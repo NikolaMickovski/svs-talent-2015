@@ -121,8 +121,12 @@ namespace CSharpProgrammingBasicsTransactionApp
         /// <param name="e"></param>
         private void btnMakeTransaction_Click(object sender, EventArgs e)
         {
+            //Kreirame objekt od klasata TransactionAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - Account Constructor with ONE PARAM)
             ITransactionAccount ta = new TransactionAccount(
                 txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
+
+
+            //Kreirame objekt od klasata DepositAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - DEFAULT Account Constructor)
             IDepositAccount da = new DepositAccount(txtCurrency.Text,
                 new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
                 new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
@@ -130,12 +134,19 @@ namespace CSharpProgrammingBasicsTransactionApp
                 (DateTime)dtpEndDate.Value,
                 new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text))
                 );
+
+            //Kreirame objekt od klasata LoanAccount, (default ke ima 100.000 den na smetka, ID ke e auto-generated,
+            //Default constructor na LoanAccount --> Default Constructor na DepositAccount --> Default Constructor na Account)
             ILoanAccount la = CreateLoanAccount();
+           
+            //Kreirame objekt od klasata TransactionProcessor koj ke e odgovoren za izvrsuvanje transakcija
             ITransactionProcessor tp = new TransactionProcessor();
-            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
-            PopulateAccounts(ta, da);
-           // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
-          //  PopulateAccounts(da, la);
+            
+            
+          //  tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
+         //   PopulateAccounts(ta, da);
+            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
+            PopulateAccounts(da, la);
         }
         /// <summary>
         /// Prikaz na dve smetki
@@ -160,6 +171,11 @@ namespace CSharpProgrammingBasicsTransactionApp
         private LoanAccount CreateLoanAccount()
         {
             return new LoanAccount();
+        }
+
+        private DepositAccount CreateDebitAccount()
+        {
+            return new DepositAccount();
         }
     }
 }
