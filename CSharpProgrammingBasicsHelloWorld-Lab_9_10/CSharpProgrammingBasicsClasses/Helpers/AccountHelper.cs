@@ -41,5 +41,12 @@ namespace CSharpProgrammingBasicsClasses
         {
             s_Account_ID = 0;
         }
+
+
+        private string GetAccountNumber(long accountID)
+        {
+            string tmp = Convert.ToString(accountID);
+            int dolzina_na_ID = tmp.Length;                    
+        }
     }
 }
