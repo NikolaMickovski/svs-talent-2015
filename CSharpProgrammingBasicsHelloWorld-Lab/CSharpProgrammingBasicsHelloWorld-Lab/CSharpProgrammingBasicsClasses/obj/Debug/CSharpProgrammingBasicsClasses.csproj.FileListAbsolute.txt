@@ -1,0 +1,5 @@
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.dll
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.pdb
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.dll
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.pdb

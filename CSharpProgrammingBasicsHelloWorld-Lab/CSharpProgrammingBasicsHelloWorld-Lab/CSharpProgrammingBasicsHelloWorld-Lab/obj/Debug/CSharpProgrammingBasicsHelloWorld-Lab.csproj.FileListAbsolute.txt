@@ -1,0 +1,5 @@
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsHelloWorld-Lab\bin\Debug\CSharpProgrammingBasicsHelloWorld-Lab.dll
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsHelloWorld-Lab\bin\Debug\CSharpProgrammingBasicsHelloWorld-Lab.pdb
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsHelloWorld-Lab\obj\Debug\CSharpProgrammingBasicsHelloWorld-Lab.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsHelloWorld-Lab\obj\Debug\CSharpProgrammingBasicsHelloWorld-Lab.dll
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsHelloWorld-Lab\obj\Debug\CSharpProgrammingBasicsHelloWorld-Lab.pdb
