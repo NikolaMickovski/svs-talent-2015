@@ -24,6 +24,12 @@ namespace CSharpProgrammingBasicsClasses
             s_Account_ID++;
             return s_Account_ID;
         }
+        /// <summary>
+        /// Metod koj treba da postavi ACCOUNT.NUMBER
+        /// </summary>
+        /// <param name="accountType"></param>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
         public static string GenerateAccountNumber(Type accountType, long accountID)
         {
             if (accountType is TransactionAccount) return "TR0000" + accountID;

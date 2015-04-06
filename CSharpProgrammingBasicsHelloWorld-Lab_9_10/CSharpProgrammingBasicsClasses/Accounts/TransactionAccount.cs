@@ -21,7 +21,10 @@ namespace CSharpProgrammingBasicsClasses
             _temp.amount = limmitAccount;
             this.Limit = _temp;
         }
-
+        /// <summary>
+        /// Prepokrien metod od osnovnata klasa
+        /// </summary>
+        /// <returns></returns>
         protected override string GenerateAccountNumber()
         {
            return  AccountHelper.GenerateAccountNumber(this.GetType(), this.ID);
