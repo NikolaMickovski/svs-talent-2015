@@ -1,0 +1,15 @@
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.dll
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.pdb
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.dll
+d:\documents\visual studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.pdb
+D:\Documents\Visual Studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.dll
+D:\Documents\Visual Studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.pdb
+D:\Documents\Visual Studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.dll
+D:\Documents\Visual Studio 2013\Projects\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.pdb
+C:\Users\Win 8.1\Google Drive\SEAVUS-CSharp-Training\Lab\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.dll
+C:\Users\Win 8.1\Google Drive\SEAVUS-CSharp-Training\Lab\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\bin\Debug\CSharpProgrammingBasicsClasses.pdb
+C:\Users\Win 8.1\Google Drive\SEAVUS-CSharp-Training\Lab\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.csprojResolveAssemblyReference.cache
+C:\Users\Win 8.1\Google Drive\SEAVUS-CSharp-Training\Lab\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.dll
+C:\Users\Win 8.1\Google Drive\SEAVUS-CSharp-Training\Lab\CSharpProgrammingBasicsHelloWorld-Lab_9_10\CSharpProgrammingBasicsClasses\obj\Debug\CSharpProgrammingBasicsClasses.pdb
