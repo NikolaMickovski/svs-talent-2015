@@ -32,9 +32,9 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public static string GenerateAccountNumber(Type accountType, long accountID)
         {
-            if (accountType is TransactionAccount) return "TR0000" + accountID;
-            if(accountType is DepositAccount) return "DP0000" + accountID;
-            if (accountType is LoanAccount) return "LN0000" + accountID;
+            if (accountType == typeof(TransactionAccount)) return "TR0000" + accountID;
+            if(accountType == typeof( DepositAccount)) return "DP0000" + accountID;
+            if (accountType == typeof(LoanAccount)) return "LN0000" + accountID;
             return "n/a";
         }
         static AccountHelper()

@@ -43,7 +43,10 @@ namespace CSharpProgrammingBasicsClasses
         /// Overloaded Constructor with one parametar only
         /// </summary>
         /// <param name="Currency"></param>
-        public Account(string currency) : this(Convert.ToInt64(AccountHelper.GenerateAccountID()), "n/a", currency) { this.Number = GenerateAccountNumber(); }
+        public Account(string currency) : this(Convert.ToInt64(AccountHelper.GenerateAccountID()), "n/a", currency) 
+        {
+            this.Number = GenerateAccountNumber(); 
+        }
 
 
 
