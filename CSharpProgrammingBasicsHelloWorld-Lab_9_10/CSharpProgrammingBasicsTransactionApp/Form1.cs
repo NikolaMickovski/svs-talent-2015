@@ -143,10 +143,10 @@ namespace CSharpProgrammingBasicsTransactionApp
             ITransactionProcessor tp = new TransactionProcessor();
             
             
-          //  tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
-         //   PopulateAccounts(ta, da);
-            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
-            PopulateAccounts(da, la);
+            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
+            PopulateAccounts(ta, da);
+           // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
+           // PopulateAccounts(da, la);
         }
         /// <summary>
         /// Prikaz na dve smetki
