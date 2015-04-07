@@ -81,7 +81,6 @@
             this.cmbMale.Name = "cmbMale";
             this.cmbMale.Size = new System.Drawing.Size(121, 21);
             this.cmbMale.TabIndex = 2;
-            this.cmbMale.SelectedIndex = 0;
             // 
             // cmbFemale
             // 
@@ -97,7 +96,6 @@
             this.cmbFemale.Name = "cmbFemale";
             this.cmbFemale.Size = new System.Drawing.Size(121, 21);
             this.cmbFemale.TabIndex = 3;
-            this.cmbFemale.SelectedIndex = 0;
             // 
             // lblMaleBreed
             // 
@@ -207,7 +205,7 @@
             this.Controls.Add(this.btnGetDogs);
             this.Controls.Add(this.gvDogLovers);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Dog\'s Matchmaker";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvDogLovers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFemaleDog)).EndInit();
