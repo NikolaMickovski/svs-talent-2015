@@ -21,9 +21,9 @@ namespace DogLovers
         {
             List<DogID> ListOfDogs = new List<DogID> ()
             {
-                new DogID{OwnerName="Nikola", OwnerLastName="Mickovski",MicroChip=123423499,Born=new DateTime(2012,4,13),Breed="Pekinezer"},
-                new DogID{OwnerName="Ivana", OwnerLastName="Andonova",MicroChip=233444332,Born=new DateTime(2013,12,9),Breed="Terier"},
-                new DogID{OwnerName="Orce", OwnerLastName="Markovski",MicroChip=989798,Born=new DateTime(2014,9,12),Breed="Terier"}
+                new DogID{Name="Pance", OwnerName="Nikola", OwnerLastName="Mickovski",MicroChip=123423499,Born=new DateTime(2012,4,13),Breed="Pekinezer"},
+                new DogID{Name="Kuce1-Ime", OwnerName="Ivana", OwnerLastName="Andonova",MicroChip=233444332,Born=new DateTime(2013,12,9),Breed="Terier"},
+                new DogID{Name="Ava", OwnerName="Orce", OwnerLastName="Markovski",MicroChip=989798,Born=new DateTime(2014,9,12),Breed="Terier"}
             };
 
             return ListOfDogs;         
