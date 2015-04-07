@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogLovers", "DogLovers\DogLovers.csproj", "{FDF91B44-1DB7-4A64-86B8-02F9629BAB7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{074C8360-9C2D-4C38-821C-F84F892C456F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDF91B44-1DB7-4A64-86B8-02F9629BAB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF91B44-1DB7-4A64-86B8-02F9629BAB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF91B44-1DB7-4A64-86B8-02F9629BAB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF91B44-1DB7-4A64-86B8-02F9629BAB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074C8360-9C2D-4C38-821C-F84F892C456F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074C8360-9C2D-4C38-821C-F84F892C456F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074C8360-9C2D-4C38-821C-F84F892C456F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074C8360-9C2D-4C38-821C-F84F892C456F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
