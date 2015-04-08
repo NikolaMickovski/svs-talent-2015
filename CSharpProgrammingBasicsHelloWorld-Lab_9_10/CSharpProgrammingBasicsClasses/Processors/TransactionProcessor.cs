@@ -15,9 +15,9 @@ namespace CSharpProgrammingBasicsClasses
         private static TransactionProcessor tp;
 
         //field _transactionLog;
-        private IList _transactionLog;
+        private IList<TransactionLogEntry> _transactionLog;
 
-        public IList TransactionLog
+        public IList<TransactionLogEntry> TransactionLog
         {
           get { return _transactionLog; }
           set { _transactionLog = value; }
@@ -28,7 +28,7 @@ namespace CSharpProgrammingBasicsClasses
         /// </summary>
         private TransactionProcessor ()
         {
-            _transactionLog = new ArrayList();
+            _transactionLog = new List<TransactionLogEntry>();
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace CSharpProgrammingBasicsClasses
                 }
                 else
                 {
-                    return (TransactionLogEntry)this.TransactionLog[key];
+                    return this.TransactionLog[key];
                 }
                     
 
@@ -198,7 +198,7 @@ namespace CSharpProgrammingBasicsClasses
             get
             {
                 if (TransactionLog.Count == 0) return null;
-                else return (TransactionLogEntry)TransactionLog[TransactionLog.Count - 1];
+                else return TransactionLog[TransactionLog.Count - 1];
                 //throw new NotImplementedException();
             }
             set
