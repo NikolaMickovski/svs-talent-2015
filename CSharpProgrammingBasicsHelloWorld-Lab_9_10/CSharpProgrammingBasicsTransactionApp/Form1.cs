@@ -211,7 +211,7 @@ namespace CSharpProgrammingBasicsTransactionApp
             tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(20000, "MKD"), niza_smetki);
 
             PopulateAccounts(da, la);
-            DisplayLastTransactionDetails(tp);
+            DisplayLastTransactionDetailsWithKey(tp);
         }
         /// <summary>
         /// Metod koj prikazuva informacii za poslednata transakcija
@@ -231,10 +231,10 @@ namespace CSharpProgrammingBasicsTransactionApp
         {
             lblTotalTransactionCount.Text += " " + in_tp.TransactionCount.ToString();
 
-            lblTLETransactionType.Text = in_tp;
+            lblTLETransactionType.Text = in_tp[0].TransactionType.ToString();
             lblTLE_CA_amount.Text = in_tp.LastTransaction.Amount.amount.ToString();
             lblTLE_CA_currency.Text = in_tp.LastTransaction.Amount.currency.ToString();
-            lblTLE_Accounts.Text = in_tp.LastTransaction.Accounts.Number;
+            lblTLE_Accounts.Text = in_tp[1].Accounts.Number;
             lblTLE_Status.Text = in_tp.LastTransaction.Status.ToString();
             
         }
