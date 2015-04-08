@@ -14,7 +14,7 @@ namespace CSharpProgrammingBasicsClasses
         //properties
         TransactionLogEntry LastTransaction { get; set; }
         int TransactionCount { get; set; }
-        int this [TransactionLogEntry key] {get;}
+        TransactionLogEntry this [int key] {get;}
 
 
         /// <summary>

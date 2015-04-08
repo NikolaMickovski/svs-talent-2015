@@ -13,7 +13,13 @@ namespace CSharpProgrammingBasicsClasses
     public class TransactionProcessor : ITransactionProcessor
     {
         //field _transactionLog;
-        public IList _transactionLog;
+        private IList _transactionLog;
+
+        public IList TransactionLog
+        {
+          get { return _transactionLog; }
+          set { _transactionLog = value; }
+        }
 
         /// <summary>
         /// Parametarless Constructor
@@ -135,6 +141,57 @@ namespace CSharpProgrammingBasicsClasses
                     } 
                 }
                 return TransactionStatus.Completed;
+            }
+        }
+
+        /// <summary>
+        /// Implementiranje na metodot LastTransaction
+        /// </summary>
+       
+
+        public int TransactionCount
+        {
+            get
+            {
+                return TransactionLog.Count;
+                //throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public TransactionLogEntry this[int key]
+        {
+            get
+            {
+                if (TransactionLog.Count <= key)
+                {
+                    return null;
+                }
+                else
+                {
+                    return (TransactionLogEntry)this.TransactionLog[key];
+                }
+                    
+
+
+               // throw new NotImplementedException(); 
+                }
+        }
+
+        public TransactionLogEntry LastTransaction
+        {
+            get
+            {
+                if (TransactionLog.Count == 0) return null;
+                else return (TransactionLogEntry)TransactionLog[TransactionLog.Count - 1];
+                //throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }
