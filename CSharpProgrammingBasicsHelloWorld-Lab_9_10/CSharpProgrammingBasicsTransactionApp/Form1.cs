@@ -140,13 +140,14 @@ namespace CSharpProgrammingBasicsTransactionApp
             ILoanAccount la = CreateLoanAccount();
            
             //Kreirame objekt od klasata TransactionProcessor koj ke e odgovoren za izvrsuvanje transakcija
-            ITransactionProcessor tp = new TransactionProcessor();
+           // ITransactionProcessor tp = new TransactionProcessor();
+            ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
             
-            
-            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
+            tp.ProcessTransaction(TransactionType.Debit, new CurrencyAmount(20000, "MKD"), ta, da);
             PopulateAccounts(ta, da);
            // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
            // PopulateAccounts(da, la);
+            DisplayLastTransactionDetails(tp);
         }
         /// <summary>
         /// Prikaz na dve smetki
@@ -197,20 +198,48 @@ namespace CSharpProgrammingBasicsTransactionApp
                 (DateTime)dtpEndDate.Value,
                 new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text))
                 );
-            //niza_smetki[0] = da;
-            niza_smetki[0] = null;
+            niza_smetki[0] = da;
+            //niza_smetki[0] = null;
             //Kreirame ILoanAccount
             ILoanAccount la = CreateLoanAccount();
 
-            //niza_smetki[1] = la;
-            niza_smetki[1] = null;
+            niza_smetki[1] = la;
+            //niza_smetki[1] = null;
             //Na sekoja smetka sakame da prefrlime 20.000,00 denari
-            ITransactionProcessor tp = new TransactionProcessor();
+            //ITransactionProcessor tp = new TransactionProcessor();
+            ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
             tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(20000, "MKD"), niza_smetki);
 
-          //  PopulateAccounts(da, la);
-
-
+            PopulateAccounts(da, la);
+            DisplayLastTransactionDetails(tp);
         }
+        /// <summary>
+        /// Metod koj prikazuva informacii za poslednata transakcija
+        /// </summary>
+        private void DisplayLastTransactionDetails(ITransactionProcessor in_tp)
+        {
+            lblTotalTransactionCount.Text += " " + in_tp.TransactionCount.ToString();
+            
+            lblTLETransactionType.Text = in_tp.LastTransaction.TransactionType.ToString();
+            lblTLE_CA_amount.Text = in_tp.LastTransaction.Amount.amount.ToString();
+            lblTLE_CA_currency.Text = in_tp.LastTransaction.Amount.currency.ToString();
+            lblTLE_Accounts.Text = in_tp.LastTransaction.Accounts.Number;
+            lblTLE_Status.Text = in_tp.LastTransaction.Status.ToString();
+        }
+
+        private void DisplayLastTransactionDetailsWithKey(ITransactionProcessor in_tp)
+        {
+            lblTotalTransactionCount.Text += " " + in_tp.TransactionCount.ToString();
+
+            lblTLETransactionType.Text = in_tp;
+            lblTLE_CA_amount.Text = in_tp.LastTransaction.Amount.amount.ToString();
+            lblTLE_CA_currency.Text = in_tp.LastTransaction.Amount.currency.ToString();
+            lblTLE_Accounts.Text = in_tp.LastTransaction.Accounts.Number;
+            lblTLE_Status.Text = in_tp.LastTransaction.Status.ToString();
+            
+        }
+
+
+
     }
 }

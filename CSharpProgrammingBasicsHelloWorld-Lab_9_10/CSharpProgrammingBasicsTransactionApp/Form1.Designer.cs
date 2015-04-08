@@ -66,6 +66,13 @@
             this.lblAccount_Base_Number = new System.Windows.Forms.Label();
             this.lblAccount_Base_Number_TO = new System.Windows.Forms.Label();
             this.btnMakeGroupTransaction = new System.Windows.Forms.Button();
+            this.lblTotalTransactionCount = new System.Windows.Forms.Label();
+            this.lblTransactionLogEntrydetails = new System.Windows.Forms.Label();
+            this.lblTLETransactionType = new System.Windows.Forms.Label();
+            this.lblTLE_CA_amount = new System.Windows.Forms.Label();
+            this.lblTLE_CA_currency = new System.Windows.Forms.Label();
+            this.lblTLE_Accounts = new System.Windows.Forms.Label();
+            this.lblTLE_Status = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -412,11 +419,81 @@
             this.btnMakeGroupTransaction.UseVisualStyleBackColor = true;
             this.btnMakeGroupTransaction.Click += new System.EventHandler(this.btnMakeGroupTransaction_Click);
             // 
+            // lblTotalTransactionCount
+            // 
+            this.lblTotalTransactionCount.AutoSize = true;
+            this.lblTotalTransactionCount.Location = new System.Drawing.Point(49, 431);
+            this.lblTotalTransactionCount.Name = "lblTotalTransactionCount";
+            this.lblTotalTransactionCount.Size = new System.Drawing.Size(124, 13);
+            this.lblTotalTransactionCount.TabIndex = 46;
+            this.lblTotalTransactionCount.Text = "Total Transaction Count:";
+            // 
+            // lblTransactionLogEntrydetails
+            // 
+            this.lblTransactionLogEntrydetails.AutoSize = true;
+            this.lblTransactionLogEntrydetails.Location = new System.Drawing.Point(408, 373);
+            this.lblTransactionLogEntrydetails.Name = "lblTransactionLogEntrydetails";
+            this.lblTransactionLogEntrydetails.Size = new System.Drawing.Size(141, 13);
+            this.lblTransactionLogEntrydetails.TabIndex = 47;
+            this.lblTransactionLogEntrydetails.Text = "TransactionLogEntry details:";
+            // 
+            // lblTLETransactionType
+            // 
+            this.lblTLETransactionType.AutoSize = true;
+            this.lblTLETransactionType.Location = new System.Drawing.Point(411, 390);
+            this.lblTLETransactionType.Name = "lblTLETransactionType";
+            this.lblTLETransactionType.Size = new System.Drawing.Size(35, 13);
+            this.lblTLETransactionType.TabIndex = 48;
+            this.lblTLETransactionType.Text = "label1";
+            // 
+            // lblTLE_CA_amount
+            // 
+            this.lblTLE_CA_amount.AutoSize = true;
+            this.lblTLE_CA_amount.Location = new System.Drawing.Point(411, 411);
+            this.lblTLE_CA_amount.Name = "lblTLE_CA_amount";
+            this.lblTLE_CA_amount.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_CA_amount.TabIndex = 49;
+            this.lblTLE_CA_amount.Text = "label2";
+            // 
+            // lblTLE_CA_currency
+            // 
+            this.lblTLE_CA_currency.AutoSize = true;
+            this.lblTLE_CA_currency.Location = new System.Drawing.Point(411, 431);
+            this.lblTLE_CA_currency.Name = "lblTLE_CA_currency";
+            this.lblTLE_CA_currency.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_CA_currency.TabIndex = 50;
+            this.lblTLE_CA_currency.Text = "label3";
+            // 
+            // lblTLE_Accounts
+            // 
+            this.lblTLE_Accounts.AutoSize = true;
+            this.lblTLE_Accounts.Location = new System.Drawing.Point(411, 453);
+            this.lblTLE_Accounts.Name = "lblTLE_Accounts";
+            this.lblTLE_Accounts.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_Accounts.TabIndex = 51;
+            this.lblTLE_Accounts.Text = "label4";
+            // 
+            // lblTLE_Status
+            // 
+            this.lblTLE_Status.AutoSize = true;
+            this.lblTLE_Status.Location = new System.Drawing.Point(411, 473);
+            this.lblTLE_Status.Name = "lblTLE_Status";
+            this.lblTLE_Status.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_Status.TabIndex = 52;
+            this.lblTLE_Status.Text = "label5";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 554);
+            this.Controls.Add(this.lblTLE_Status);
+            this.Controls.Add(this.lblTLE_Accounts);
+            this.Controls.Add(this.lblTLE_CA_currency);
+            this.Controls.Add(this.lblTLE_CA_amount);
+            this.Controls.Add(this.lblTLETransactionType);
+            this.Controls.Add(this.lblTransactionLogEntrydetails);
+            this.Controls.Add(this.lblTotalTransactionCount);
             this.Controls.Add(this.btnMakeGroupTransaction);
             this.Controls.Add(this.lblAccount_Base_Number_TO);
             this.Controls.Add(this.lblAccount_Base_Number);
@@ -503,6 +580,13 @@
         private System.Windows.Forms.Label lblAccount_Base_Number;
         private System.Windows.Forms.Label lblAccount_Base_Number_TO;
         private System.Windows.Forms.Button btnMakeGroupTransaction;
+        private System.Windows.Forms.Label lblTotalTransactionCount;
+        private System.Windows.Forms.Label lblTransactionLogEntrydetails;
+        private System.Windows.Forms.Label lblTLETransactionType;
+        private System.Windows.Forms.Label lblTLE_CA_amount;
+        private System.Windows.Forms.Label lblTLE_CA_currency;
+        private System.Windows.Forms.Label lblTLE_Accounts;
+        private System.Windows.Forms.Label lblTLE_Status;
     }
 }
 

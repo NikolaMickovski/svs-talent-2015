@@ -12,6 +12,8 @@ namespace CSharpProgrammingBasicsClasses
     /// </summary>
     public class TransactionProcessor : ITransactionProcessor
     {
+        private static TransactionProcessor tp;
+
         //field _transactionLog;
         private IList _transactionLog;
 
@@ -24,7 +26,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <summary>
         /// Parametarless Constructor
         /// </summary>
-        public TransactionProcessor ()
+        private TransactionProcessor ()
         {
             _transactionLog = new ArrayList();
         }
@@ -38,8 +40,9 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="amount"></param>
         /// <param name="accounts"></param>
         /// <param name="transacionStatus"></param>
-        private void LogTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts, TransactionStatus transacionStatus){
-            TransactionLogEntry tle = new TransactionLogEntry();
+        private TransactionLogEntry LogTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount account, TransactionStatus transacionStatus){
+            TransactionLogEntry tle = new TransactionLogEntry(transactionType,amount,account,transacionStatus);
+            return tle;
         }
 
         public TransactionStatus ProcessTransaction(TransactionType TransactionType, CurrencyAmount Amount, IAccount AccountFrom, IAccount AccountTo)
@@ -53,7 +56,9 @@ namespace CSharpProgrammingBasicsClasses
                         TransactionStatus dva = AccountFrom.DebitAmount(Amount);
                         if (eden == dva)
                         {
+                            LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed);
                             return TransactionStatus.Completed;
+
                         }
 
                         else
@@ -63,10 +68,12 @@ namespace CSharpProgrammingBasicsClasses
                     }
                 case TransactionType.Debit:
                     {
+                        TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                         return AccountFrom.DebitAmount(Amount);
                     }
                 case TransactionType.Credit:
                     {
+                        TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                         return AccountFrom.CreditAmount(Amount);
                     }
                 default: return TransactionStatus.None;
@@ -144,11 +151,10 @@ namespace CSharpProgrammingBasicsClasses
             }
         }
 
+            
         /// <summary>
-        /// Implementiranje na metodot LastTransaction
+        /// Implementiranje na Property-to TransactionCount
         /// </summary>
-       
-
         public int TransactionCount
         {
             get
@@ -161,7 +167,11 @@ namespace CSharpProgrammingBasicsClasses
                 throw new NotImplementedException();
             }
         }
-
+        /// <summary>
+        /// Implementiranje na Property-to TransactionLogEntry
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public TransactionLogEntry this[int key]
         {
             get
@@ -180,7 +190,9 @@ namespace CSharpProgrammingBasicsClasses
                // throw new NotImplementedException(); 
                 }
         }
-
+        /// <summary>
+        /// Implementiranje na Property-to LastTransaction
+        /// </summary>   
         public TransactionLogEntry LastTransaction
         {
             get
@@ -193,6 +205,15 @@ namespace CSharpProgrammingBasicsClasses
             {
                 throw new NotImplementedException();
             }
+        }
+
+        static TransactionProcessor(){
+            tp = new TransactionProcessor();
+        }
+        public static TransactionProcessor GetTransactionProcessor()
+        {
+           // ITransactionProcessor tp = new TransactionProcessor();
+            return (TransactionProcessor)tp;
         }
     }
 }
