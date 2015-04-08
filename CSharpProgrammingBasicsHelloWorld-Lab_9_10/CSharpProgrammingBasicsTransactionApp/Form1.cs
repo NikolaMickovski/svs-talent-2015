@@ -177,5 +177,40 @@ namespace CSharpProgrammingBasicsTransactionApp
         {
             return new DepositAccount();
         }
+
+        /// <summary>
+        /// Kopce za pravenje na grupna transakcija
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMakeGroupTransaction_Click(object sender, EventArgs e)
+        {
+            IAccount[] niza_smetki;
+            niza_smetki = new IAccount[2];
+           // niza_smetki = null; 
+
+            //Kreirame IDepositAccount
+            IDepositAccount da = new DepositAccount(txtCurrency.Text,
+                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
+                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
+                (DateTime)dtpStartDate.Value,
+                (DateTime)dtpEndDate.Value,
+                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text))
+                );
+            //niza_smetki[0] = da;
+            niza_smetki[0] = null;
+            //Kreirame ILoanAccount
+            ILoanAccount la = CreateLoanAccount();
+
+            //niza_smetki[1] = la;
+            niza_smetki[1] = null;
+            //Na sekoja smetka sakame da prefrlime 20.000,00 denari
+            ITransactionProcessor tp = new TransactionProcessor();
+            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(20000, "MKD"), niza_smetki);
+
+          //  PopulateAccounts(da, la);
+
+
+        }
     }
 }

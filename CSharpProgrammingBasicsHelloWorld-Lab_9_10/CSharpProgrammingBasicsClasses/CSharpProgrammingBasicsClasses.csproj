@@ -55,6 +55,7 @@
     <Compile Include="Common\UnitOfTime.cs" />
     <Compile Include="Interfaces\IAccount.cs" />
     <Compile Include="Interfaces\ITransactionProcessor.cs" />
+    <Compile Include="Processors\TransactionLogEntry.cs" />
     <Compile Include="Processors\TransactionProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

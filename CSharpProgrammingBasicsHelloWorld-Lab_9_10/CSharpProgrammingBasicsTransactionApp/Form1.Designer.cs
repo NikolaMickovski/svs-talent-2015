@@ -65,6 +65,7 @@
             this.btnMakeTransaction = new System.Windows.Forms.Button();
             this.lblAccount_Base_Number = new System.Windows.Forms.Label();
             this.lblAccount_Base_Number_TO = new System.Windows.Forms.Label();
+            this.btnMakeGroupTransaction = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -401,11 +402,22 @@
             this.lblAccount_Base_Number_TO.TabIndex = 44;
             this.lblAccount_Base_Number_TO.Text = "Број на сметка:";
             // 
+            // btnMakeGroupTransaction
+            // 
+            this.btnMakeGroupTransaction.Location = new System.Drawing.Point(49, 401);
+            this.btnMakeGroupTransaction.Name = "btnMakeGroupTransaction";
+            this.btnMakeGroupTransaction.Size = new System.Drawing.Size(183, 23);
+            this.btnMakeGroupTransaction.TabIndex = 45;
+            this.btnMakeGroupTransaction.Text = "Make group transactions";
+            this.btnMakeGroupTransaction.UseVisualStyleBackColor = true;
+            this.btnMakeGroupTransaction.Click += new System.EventHandler(this.btnMakeGroupTransaction_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 357);
+            this.ClientSize = new System.Drawing.Size(777, 554);
+            this.Controls.Add(this.btnMakeGroupTransaction);
             this.Controls.Add(this.lblAccount_Base_Number_TO);
             this.Controls.Add(this.lblAccount_Base_Number);
             this.Controls.Add(this.btnMakeTransaction);
@@ -490,6 +502,7 @@
         private System.Windows.Forms.Button btnMakeTransaction;
         private System.Windows.Forms.Label lblAccount_Base_Number;
         private System.Windows.Forms.Label lblAccount_Base_Number_TO;
+        private System.Windows.Forms.Button btnMakeGroupTransaction;
     }
 }
 

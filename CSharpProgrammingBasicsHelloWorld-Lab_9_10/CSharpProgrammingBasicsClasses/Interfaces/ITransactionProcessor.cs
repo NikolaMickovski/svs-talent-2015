@@ -11,6 +11,12 @@ namespace CSharpProgrammingBasicsClasses
     /// </summary>
     public interface ITransactionProcessor
     {
+        //properties
+        TransactionLogEntry LastTransaction { get; set; }
+        int TransactionCount { get; set; }
+        int this [TransactionLogEntry key] {get;}
+
+
         /// <summary>
         /// Metod koj treba da ja izvrsi celata TRANSAKCIJA
         /// </summary>
@@ -21,6 +27,9 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         TransactionStatus ProcessTransaction(TransactionType TransactionType, CurrencyAmount Amount,
             IAccount AccountFrom, IAccount AccountTo);
-        
+
+        TransactionStatus ProcessGroupTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts);
+
+
     }
 }
