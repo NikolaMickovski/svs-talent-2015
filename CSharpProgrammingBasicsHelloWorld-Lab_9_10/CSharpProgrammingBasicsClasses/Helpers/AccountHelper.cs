@@ -63,7 +63,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="amount"></param>
         public static void LogTransaction(IAccount account, TransactionType transactionType, CurrencyAmount amount)
         {
-            if ( (amount.amount > 20000) && (amount.amount < 25000) && account.Currency.Equals("MKD"))
+            if ( ((amount.amount > 20000) && (amount.amount < 25000)) && account.Currency.Equals("MKD"))
             {
                 Console.WriteLine("Exceeds 20000 MKD: " + account.Number.ToString() + " " + transactionType.ToString() + " " + amount.amount + " " + amount.currency+"\n");
             }
@@ -76,7 +76,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="amount"></param>
         public static void NotifyNationalBank(IAccount account, TransactionType transactionType, CurrencyAmount amount)
         {
-            if (amount.amount > 25000)
+            if (amount.amount > 25000 && account.Currency.Equals("MKD"))
             {
                 Console.WriteLine("NBRM has been notified\n");
             }

@@ -179,6 +179,7 @@ namespace CSharpProgrammingBasicsTransactionApp
                 (DateTime)dtpStartDate.Value,
                 (DateTime)dtpEndDate.Value,
                 new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
+
         }
 
         /// <summary>
@@ -194,6 +195,7 @@ namespace CSharpProgrammingBasicsTransactionApp
 
             //Kreirame IDepositAccount
             IDepositAccount da = CreateDebitAccount();
+            da.OnBalanceChanged+=OnBalanceChanged_Handler;
            
             niza_smetki[0] = da;
             //niza_smetki[0] = null;
@@ -205,7 +207,7 @@ namespace CSharpProgrammingBasicsTransactionApp
             //Na sekoja smetka sakame da prefrlime 20.000,00 denari
             //ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
-            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(20000, "MKD"), niza_smetki);
+            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(27000, "MKD"), niza_smetki);
 
             PopulateAccounts(da, la);
             DisplayLastTransactionDetailsWithKey(tp);
@@ -242,7 +244,13 @@ namespace CSharpProgrammingBasicsTransactionApp
             
         }
 
-
+        private static void OnBalanceChanged_Handler(Object o, BalanceChangedEventArguments eventArgs)
+        {
+            Console.WriteLine(
+                "Arg 1 (Accout Number): " + eventArgs.Account.Number + "\n" +
+                "Arg 2 (Tekovno saldo): " + eventArgs.Account.Balance.amount.ToString() + "\n" +
+                "Arg 3 (Promena za vrednost): " + eventArgs.Change.amount.ToString());
+        }
 
     }
 }

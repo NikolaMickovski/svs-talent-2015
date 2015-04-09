@@ -17,7 +17,33 @@ namespace CSharpProgrammingBasicsClasses
         /// <summary>
         /// Property koe e STRUCT
         /// </summary>
-        public CurrencyAmount Balance { get; private set; }
+        public CurrencyAmount Balance
+        {
+            get
+            {
+                decimal pom1 = 0;
+                string pom2 = null;
+                return new CurrencyAmount(pom1, pom2);
+            }
+            private set
+            {
+                CurrencyAmount _balance = this.Balance;
+                decimal pom = this.Balance.amount;
+                _balance.amount = 100000;
+                _balance.currency = "EUR";
+                this.Balance = _balance;
+                if (value.amount != pom)
+                {
+                    this.OnBalanceChanged(this, new BalanceChangedEventArguments(this, value));
+                }
+                /*
+                CurrencyAmount _balance = this.Balance;
+                _balance.amount = 100000;
+                _balance.currency = "EUR";
+                this.Balance = _balance;
+                 * */
+            }
+        }
 
 
 
@@ -120,5 +146,8 @@ namespace CSharpProgrammingBasicsClasses
         
         #endregion
 
+
+
+        public event BalanceChanged OnBalanceChanged;
     }
 }

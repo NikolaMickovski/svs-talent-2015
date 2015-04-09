@@ -19,5 +19,6 @@ namespace CSharpProgrammingBasicsClasses
         TransactionStatus CreditAmount(CurrencyAmount amount);
         TransactionStatus DebitAmount(CurrencyAmount amount);
 
+        event BalanceChanged OnBalanceChanged;
     }
 }

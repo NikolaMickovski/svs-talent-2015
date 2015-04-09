@@ -66,7 +66,7 @@ namespace CSharpProgrammingBasicsClasses
                         if (eden == dva)
                         {
                            TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
-                            return TransactionStatus.Completed;
+                           return TransactionStatus.Completed;
 
                         }
 
@@ -78,11 +78,13 @@ namespace CSharpProgrammingBasicsClasses
                 case TransactionType.Debit:
                     {
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
+                        CallExternalLogger(AccountFrom, TransactionType, Amount);
                         return AccountFrom.DebitAmount(Amount);
                     }
                 case TransactionType.Credit:
                     {
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
+                        CallExternalLogger(AccountFrom, TransactionType, Amount);
                         return AccountFrom.CreditAmount(Amount);
                     }
                 default: return TransactionStatus.None;
@@ -219,6 +221,8 @@ namespace CSharpProgrammingBasicsClasses
 
         static TransactionProcessor(){
             tp = new TransactionProcessor();
+            tp.ExternalLogger += AccountHelper.NotifyNationalBank;
+            tp.ExternalLogger += AccountHelper.LogTransaction;
         }
         public static TransactionProcessor GetTransactionProcessor()
         {
@@ -228,19 +232,20 @@ namespace CSharpProgrammingBasicsClasses
 
         private void CallExternalLogger (IAccount account, TransactionType transactionType, CurrencyAmount amount)
         {
-            
+            ExternalLogger(account, transactionType, amount);
         }
 
-        public TransactionLogger ExternalLogger
-        {
+        public TransactionLogger ExternalLogger {get; set; }
+       /* {
             get
             {
-                throw new NotImplementedException();
+
+             //   throw new NotImplementedException();
             }
             set
             {
-                throw new NotImplementedException();
+             //   throw new NotImplementedException();
             }
-        }
+        }*/
     }
 }
