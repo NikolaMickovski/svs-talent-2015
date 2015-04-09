@@ -55,8 +55,32 @@ namespace CSharpProgrammingBasicsClasses
         {
             s_Account_ID = 0;
         }
-            
-
+        /// <summary>
+        /// Metod koj se spravuva so transakcii so 20.000 < suma < 25.000
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="transactionType"></param>
+        /// <param name="amount"></param>
+        public static void LogTransaction(IAccount account, TransactionType transactionType, CurrencyAmount amount)
+        {
+            if ( (amount.amount > 20000) && (amount.amount < 25000) && account.Currency.Equals("MKD"))
+            {
+                Console.WriteLine("Exceeds 20000 MKD: " + account.Number.ToString() + " " + transactionType.ToString() + " " + amount.amount + " " + amount.currency+"\n");
+            }
+        }
+        /// <summary>
+        /// Metod koj se spravuva so transakcii so 20.500 < suma
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="transactionType"></param>
+        /// <param name="amount"></param>
+        public static void NotifyNationalBank(IAccount account, TransactionType transactionType, CurrencyAmount amount)
+        {
+            if (amount.amount > 25000)
+            {
+                Console.WriteLine("NBRM has been notified\n");
+            }
+        }
 
     }
 }

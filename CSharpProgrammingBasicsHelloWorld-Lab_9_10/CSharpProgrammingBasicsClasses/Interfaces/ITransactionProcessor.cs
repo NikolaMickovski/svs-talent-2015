@@ -16,6 +16,7 @@ namespace CSharpProgrammingBasicsClasses
         int TransactionCount { get; set; }
         TransactionLogEntry this [int key] {get;}
 
+        TransactionLogger ExternalLogger { get; set; }
 
         /// <summary>
         /// Metod koj treba da ja izvrsi celata TRANSAKCIJA

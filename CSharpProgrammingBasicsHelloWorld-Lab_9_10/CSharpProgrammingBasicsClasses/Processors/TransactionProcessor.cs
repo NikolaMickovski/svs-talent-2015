@@ -225,5 +225,22 @@ namespace CSharpProgrammingBasicsClasses
            // ITransactionProcessor tp = new TransactionProcessor();
             return (TransactionProcessor)tp;
         }
+
+        private void CallExternalLogger (IAccount account, TransactionType transactionType, CurrencyAmount amount)
+        {
+            
+        }
+
+        public TransactionLogger ExternalLogger
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
