@@ -33,11 +33,19 @@ namespace CSharpProgrammingBasicsClasses
         //Default Constructor
         public DepositAccount() { }
 
-        protected override string GenerateAccountNumber()
+        /// <summary>
+        /// Metod koj treba da generira Number za Debitnata smetka
+        /// </summary>
+        /// <returns>Number</returns>
+       /* protected override string GenerateAccountNumber()
         {
             return AccountHelper.GenerateAccountNumber(this.GetType(), this.ID);
             //throw new NotImplementedException();
+        }*/
+        protected override string GenerateAccountNumber()
+        {
+            return AccountHelper.GenerateAccountNumber<DepositAccount>(this.ID);
+            //throw new NotImplementedException();
         }
-        
     }
 }

@@ -11,8 +11,8 @@ namespace CSharpProgrammingBasicsClasses
     /// </summary>
     public class TransactionLogEntry
     {
-        private IAccount account;
-        private TransactionStatus transacionStatus;
+       // private IAccount account;
+      //  private TransactionStatus transacionStatus;
 
         #region PROPERTIES
         public TransactionType TransactionType { get; set; }

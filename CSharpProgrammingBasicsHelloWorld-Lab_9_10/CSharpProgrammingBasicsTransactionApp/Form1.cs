@@ -18,6 +18,12 @@ namespace CSharpProgrammingBasicsTransactionApp
             InitializeComponent();
         }
 
+        
+        /// <summary>
+        /// Metod koj kreiра Transaction Account i prikazuva informacii za istata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateTransactionAccount_Click(object sender, EventArgs e)
         {
             //kreirame objekt od klasata TransactionAccount
@@ -37,19 +43,11 @@ namespace CSharpProgrammingBasicsTransactionApp
         /// <param name="a"></param>
         private void PopulateAccountCommon(IAccount a)
         {
-            //lblAccountID_Base.Text = "";
-            //lblAccountNumber_Base.Text = "";
-            //lblAccountCurency_Base.Text = "";
-
             lblAccountID_Base.Text += " " + a.ID.ToString();
             lblAccountNumber_Base.Text += " " + a.Balance.amount.ToString();
             lblAccountCurency_Base.Text += " " + a.Currency;
-
-            IsItDepositAccount(a);
-            //lblAccountCurrency.Text = a.currency;
-            //lblAccountLimit.Text = a.number;
-          //  lblBalanceAmount.Text = a.Balance.amount.ToString();
-            //lblAccountBalanceCurrency.Text = a.Balance.currency;
+            lblAccount_Base_Number.Text += " " + a.Number;
+            IsItDepositAccount(a);            
         }
 
         /// <summary>
@@ -73,7 +71,7 @@ namespace CSharpProgrammingBasicsTransactionApp
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //PopulateAccounts(new Account("mkd"),new Account("usa"));
+           
         }
         /// <summary>
         /// Metod koj kreira instanca od klasata DEPOSIT ACCOUNT
@@ -82,15 +80,9 @@ namespace CSharpProgrammingBasicsTransactionApp
         /// <param name="e"></param>
         private void btnCreateDepositAccount_Click(object sender, EventArgs e)
         {
-            IDepositAccount da = new DepositAccount
-                (txtCurrency.Text,
-                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
-                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text),(UnitOfTime)Enum.Parse(typeof(UnitOfTime),txtUnitOfTimeInterestRate.Text)),
-                (DateTime)dtpStartDate.Value,
-                (DateTime)dtpEndDate.Value,
-                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text))
-                );
-            IsItDepositAccount(da);
+            IDepositAccount da = CreateDebitAccount();
+            PopulateAccountCommon(da);
+           // IsItDepositAccount(da);
         }
 
         private void IsItDepositAccount(IAccount a)
@@ -114,6 +106,7 @@ namespace CSharpProgrammingBasicsTransactionApp
                 lblDepositAccountUnit.Text += " /";           
             }
         }
+
         /// <summary>
         /// Transakcija 20.000,00 MKD megu dve smetki
         /// </summary>
@@ -127,13 +120,7 @@ namespace CSharpProgrammingBasicsTransactionApp
 
 
             //Kreirame objekt od klasata DepositAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - DEFAULT Account Constructor)
-            IDepositAccount da = new DepositAccount(txtCurrency.Text,
-                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
-                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
-                (DateTime)dtpStartDate.Value,
-                (DateTime)dtpEndDate.Value,
-                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text))
-                );
+            IDepositAccount da = CreateDebitAccount();
 
             //Kreirame objekt od klasata LoanAccount, (default ke ima 100.000 den na smetka, ID ke e auto-generated,
             //Default constructor na LoanAccount --> Default Constructor na DepositAccount --> Default Constructor na Account)
@@ -143,9 +130,10 @@ namespace CSharpProgrammingBasicsTransactionApp
            // ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
             
-            tp.ProcessTransaction(TransactionType.Debit, new CurrencyAmount(20000, "MKD"), ta, da);
+            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
             PopulateAccounts(ta, da);
-           // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
+           
+            // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
            // PopulateAccounts(da, la);
             DisplayLastTransactionDetails(tp);
         }
@@ -171,12 +159,26 @@ namespace CSharpProgrammingBasicsTransactionApp
         /// </summary>
         private LoanAccount CreateLoanAccount()
         {
-            return new LoanAccount();
+            return new LoanAccount(txtCurrency.Text,
+                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
+                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
+                (DateTime)dtpStartDate.Value,
+                (DateTime)dtpEndDate.Value,
+                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
         }
 
+        /// <summary>
+        /// Metod koj vraka instanca od Deposit Account
+        /// </summary>
+        /// <returns></returns>
         private DepositAccount CreateDebitAccount()
         {
-            return new DepositAccount();
+            return new DepositAccount(txtCurrency.Text,
+                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
+                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
+                (DateTime)dtpStartDate.Value,
+                (DateTime)dtpEndDate.Value,
+                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
         }
 
         /// <summary>
@@ -191,13 +193,8 @@ namespace CSharpProgrammingBasicsTransactionApp
            // niza_smetki = null; 
 
             //Kreirame IDepositAccount
-            IDepositAccount da = new DepositAccount(txtCurrency.Text,
-                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
-                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
-                (DateTime)dtpStartDate.Value,
-                (DateTime)dtpEndDate.Value,
-                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text))
-                );
+            IDepositAccount da = CreateDebitAccount();
+           
             niza_smetki[0] = da;
             //niza_smetki[0] = null;
             //Kreirame ILoanAccount
@@ -213,29 +210,35 @@ namespace CSharpProgrammingBasicsTransactionApp
             PopulateAccounts(da, la);
             DisplayLastTransactionDetailsWithKey(tp);
         }
+
         /// <summary>
-        /// Metod koj prikazuva informacii za poslednata transakcija
+        /// Metod koj prikazuva informacii za poslednata transakcija,
+        /// koristejki go Property-to LastTransaction
         /// </summary>
         private void DisplayLastTransactionDetails(ITransactionProcessor in_tp)
         {
-            lblTotalTransactionCount.Text += " " + in_tp.TransactionCount.ToString();
-            
-            lblTLETransactionType.Text = in_tp.LastTransaction.TransactionType.ToString();
+            lblTotalTransactionCount.Text += " " + in_tp.TransactionCount.ToString();           
+            lblTLETransactionType.Text = in_tp.LastTransaction.TransactionType.ToString();           
             lblTLE_CA_amount.Text = in_tp.LastTransaction.Amount.amount.ToString();
             lblTLE_CA_currency.Text = in_tp.LastTransaction.Amount.currency.ToString();
             lblTLE_Accounts.Text = in_tp.LastTransaction.Accounts.Number;
             lblTLE_Status.Text = in_tp.LastTransaction.Status.ToString();
         }
 
+        /// <summary>
+        /// Metod koj koristi INDEXERS, so Property-to TransactionCount kako kluc
+        /// za prikaz na informacii za POSLEDNO IZVRSENATA TRANSAKCIJA
+        /// </summary>
+        /// <param name="in_tp"></param>
         private void DisplayLastTransactionDetailsWithKey(ITransactionProcessor in_tp)
         {
             lblTotalTransactionCount.Text += " " + in_tp.TransactionCount.ToString();
-
-            lblTLETransactionType.Text = in_tp[0].TransactionType.ToString();
-            lblTLE_CA_amount.Text = in_tp.LastTransaction.Amount.amount.ToString();
-            lblTLE_CA_currency.Text = in_tp.LastTransaction.Amount.currency.ToString();
-            lblTLE_Accounts.Text = in_tp[1].Accounts.Number;
-            lblTLE_Status.Text = in_tp.LastTransaction.Status.ToString();
+            //koristime indexers
+            lblTLETransactionType.Text = in_tp[in_tp.TransactionCount-1].TransactionType.ToString();
+            lblTLE_CA_amount.Text = in_tp[in_tp.TransactionCount-1].Amount.amount.ToString();
+            lblTLE_CA_currency.Text = in_tp[in_tp.TransactionCount-1].Amount.currency.ToString();
+            lblTLE_Accounts.Text = in_tp[in_tp.TransactionCount-1].Accounts.Number;
+            lblTLE_Status.Text = in_tp[in_tp.TransactionCount-1].Status.ToString();
             
         }
 

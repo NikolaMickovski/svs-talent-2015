@@ -15,6 +15,8 @@ namespace CSharpProgrammingBasicsClasses
         /// Default constructor
         /// </summary>
         public LoanAccount() { }
+        public LoanAccount(string currency, TimePeriod depositPeriod, InterestRate interestRate, DateTime startDate, DateTime endDate, TransactionAccount transactionAccount)
+            : base(currency, depositPeriod, interestRate, startDate, endDate, transactionAccount) { }
 
         #region PUBLIC METHODS
         public override TransactionStatus DebitAmount(CurrencyAmount amount)
@@ -28,9 +30,14 @@ namespace CSharpProgrammingBasicsClasses
         }
         #endregion
 
+        //protected override string GenerateAccountNumber()
+        //{
+        //    return AccountHelper.GenerateAccountNumber(this.GetType(), this.ID);
+        //}
+
         protected override string GenerateAccountNumber()
         {
-            return AccountHelper.GenerateAccountNumber(this.GetType(), this.ID);
+            return AccountHelper.GenerateAccountNumber <LoanAccount> (this.ID);
         }
     }
 }

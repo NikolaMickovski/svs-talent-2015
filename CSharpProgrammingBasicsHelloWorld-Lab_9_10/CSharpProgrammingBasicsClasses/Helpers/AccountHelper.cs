@@ -15,6 +15,7 @@ namespace CSharpProgrammingBasicsClasses
         /// Field od tip INT
         /// </summary>
         private static int s_Account_ID;
+        
         /// <summary>
         /// Static method koj go vraka s_Account_ID;
         /// </summary>
@@ -24,6 +25,7 @@ namespace CSharpProgrammingBasicsClasses
             s_Account_ID++;
             return s_Account_ID;
         }
+       
         /// <summary>
         /// Metod koj treba da postavi ACCOUNT.NUMBER
         /// </summary>
@@ -37,16 +39,23 @@ namespace CSharpProgrammingBasicsClasses
             if (accountType == typeof(LoanAccount)) return "LN0000" + accountID;
             return "n/a";
         }
+
+
+        public static string GenerateAccountNumber <TypeOfAccount> (long accountID) where TypeOfAccount : IAccount, new ()
+        {
+            TypeOfAccount T = new TypeOfAccount();
+           // Type generic = 
+            return AccountHelper.GenerateAccountNumber(T.GetType(),accountID);
+        }
+
+        /// <summary>
+        /// Static Constructor which helps implementing SINGLETON PATTERNs
+        /// </summary>
         static AccountHelper()
         {
             s_Account_ID = 0;
         }
-
-
-        public static string GenerateAccountNumber(long accountID): where
-        {
-
-        }
+            
 
 
     }

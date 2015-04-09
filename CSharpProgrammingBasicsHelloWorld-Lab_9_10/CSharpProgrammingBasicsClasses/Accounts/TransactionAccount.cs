@@ -25,11 +25,19 @@ namespace CSharpProgrammingBasicsClasses
         /// Prepokrien metod od osnovnata klasa
         /// </summary>
         /// <returns></returns>
+        //protected override string GenerateAccountNumber()
+        //{
+        //   return  AccountHelper.GenerateAccountNumber(this.GetType(), this.ID);
+        //    //throw new NotImplementedException();
+        //}
+
         protected override string GenerateAccountNumber()
         {
-           return  AccountHelper.GenerateAccountNumber(this.GetType(), this.ID);
+            return AccountHelper.GenerateAccountNumber<TransactionAccount>(this.ID);
             //throw new NotImplementedException();
         }
 
+
+        public TransactionAccount() { }
     }
 }

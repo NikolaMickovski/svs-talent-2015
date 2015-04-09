@@ -53,6 +53,7 @@ namespace CSharpProgrammingBasicsClasses
         //Default Constructor
         public Account()
         {
+            /*
             this.ID = Convert.ToInt64(AccountHelper.GenerateAccountID());
             this.Number = GenerateAccountNumber();
             this.Currency = "MKD";
@@ -60,6 +61,7 @@ namespace CSharpProgrammingBasicsClasses
             _balance.amount = 100000;
             _balance.currency = "EUR";
             this.Balance = _balance;
+             */ 
         }
 
         #region PUBLIC METHODS

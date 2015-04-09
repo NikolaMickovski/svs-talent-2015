@@ -45,6 +45,15 @@ namespace CSharpProgrammingBasicsClasses
             return tle;
         }
 
+        /// <summary>
+        /// Metod koj e odgovoren za EDNA TRANSAKCIJA
+        /// 1) NA EDNA SMETKA, 2) OD EDNA SMETKA KON DRUGA
+        /// </summary>
+        /// <param name="TransactionType">Tip na transakcija</param>
+        /// <param name="Amount">Amount & Currency</param>
+        /// <param name="AccountFrom">Od smetka</param>
+        /// <param name="AccountTo">Na smetka</param>
+        /// <returns></returns>
         public TransactionStatus ProcessTransaction(TransactionType TransactionType, CurrencyAmount Amount, IAccount AccountFrom, IAccount AccountTo)
         {
             //throw new NotImplementedException();
@@ -56,7 +65,7 @@ namespace CSharpProgrammingBasicsClasses
                         TransactionStatus dva = AccountFrom.DebitAmount(Amount);
                         if (eden == dva)
                         {
-                            LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed);
+                           TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                             return TransactionStatus.Completed;
 
                         }
@@ -155,6 +164,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <summary>
         /// Implementiranje na Property-to TransactionCount
         /// </summary>
+        /// <returns>Overall number of transactions</returns> 
         public int TransactionCount
         {
             get

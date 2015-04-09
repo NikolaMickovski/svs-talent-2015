@@ -101,7 +101,7 @@
             this.txtCurrency.Name = "txtCurrency";
             this.txtCurrency.Size = new System.Drawing.Size(100, 20);
             this.txtCurrency.TabIndex = 2;
-            this.txtCurrency.Text = "MKD";
+            this.txtCurrency.Text = "EUR";
             // 
             // txtLimit
             // 
@@ -167,7 +167,7 @@
             this.txtAmountPeriod.Name = "txtAmountPeriod";
             this.txtAmountPeriod.Size = new System.Drawing.Size(100, 20);
             this.txtAmountPeriod.TabIndex = 10;
-            this.txtAmountPeriod.Text = "Amount";
+            this.txtAmountPeriod.Text = "1000";
             // 
             // txtUnitOfTimePeriod
             // 
@@ -175,7 +175,7 @@
             this.txtUnitOfTimePeriod.Name = "txtUnitOfTimePeriod";
             this.txtUnitOfTimePeriod.Size = new System.Drawing.Size(100, 20);
             this.txtUnitOfTimePeriod.TabIndex = 11;
-            this.txtUnitOfTimePeriod.Text = "Unit of Time";
+            this.txtUnitOfTimePeriod.Text = "Month";
             // 
             // txtAmountInterestRate
             // 
@@ -183,7 +183,7 @@
             this.txtAmountInterestRate.Name = "txtAmountInterestRate";
             this.txtAmountInterestRate.Size = new System.Drawing.Size(100, 20);
             this.txtAmountInterestRate.TabIndex = 12;
-            this.txtAmountInterestRate.Text = "Amount";
+            this.txtAmountInterestRate.Text = "3";
             // 
             // txtUnitOfTimeInterestRate
             // 
@@ -191,7 +191,7 @@
             this.txtUnitOfTimeInterestRate.Name = "txtUnitOfTimeInterestRate";
             this.txtUnitOfTimeInterestRate.Size = new System.Drawing.Size(100, 20);
             this.txtUnitOfTimeInterestRate.TabIndex = 13;
-            this.txtUnitOfTimeInterestRate.Text = "Unit of Time";
+            this.txtUnitOfTimeInterestRate.Text = "Year";
             // 
             // lblPeriod
             // 
