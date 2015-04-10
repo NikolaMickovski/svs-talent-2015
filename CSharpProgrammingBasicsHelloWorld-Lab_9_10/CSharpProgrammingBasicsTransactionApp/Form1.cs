@@ -168,6 +168,12 @@ namespace CSharpProgrammingBasicsTransactionApp
                 new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
         }
 
+        private TransactionAccount CreateTransactionAccount()
+        {
+            return new TransactionAccount(
+                txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
+        }
+
         /// <summary>
         /// Metod koj vraka instanca od Deposit Account
         /// </summary>
@@ -213,6 +219,7 @@ namespace CSharpProgrammingBasicsTransactionApp
 
             PopulateAccounts(da, la);
             DisplayLastTransactionDetailsWithKey(tp);
+            CreateAccounts(CreateAccountType.DepositAccount|CreateAccountType.LoanAccount, null);
         }
 
         /// <summary>
@@ -253,11 +260,73 @@ namespace CSharpProgrammingBasicsTransactionApp
                 "Arg 2 (Tekovnoto saldo bilo): " + eventArgs.Account.Balance.amount.ToString() + "\n" +
                 "Arg 3 (A sega iznesuva): " + eventArgs.Change.amount.ToString());
         }
+        /// <summary>
+        /// Metod koj na vlez treba da dobie odreden FLAG,
+        /// a potoa vrz osnova na nego da kreira soodvetni smetki
+        /// </summary>
+        /// <param name="accountTypesToCreate">INPUT FLAG</param>
+        /// <param name="transactionAccount"></param>
+        /// <returns></returns>
         private Dictionary<CreateAccountType, IAccount> CreateAccounts (CreateAccountType accountTypesToCreate, ITransactionAccount transactionAccount)
         {
-            if (acc)
+            IDictionary<CreateAccountType, IAccount> dic = new Dictionary<CreateAccountType, IAccount>();
+            //CreateAccountType all = CreateAccountType.DepositAccount|CreateAccountType.LoanAccount|CreateAccountType.TransactionAccount;
+            //Console.WriteLine(all + "\n");
+            //CreateAccountType whichToSet = all & accountTypesToCreate;
+            //Console.WriteLine(whichToSet + "\n");
+
+            switch(accountTypesToCreate)
+            {
+                case CreateAccountType.DepositAccount:
+                    {
+                        dic.Add(CreateAccountType.DepositAccount, CreateDebitAccount());
+                        return (Dictionary<CreateAccountType, IAccount>)dic;
+                    }
+                case CreateAccountType.LoanAccount:
+                   {
+                        dic.Add(CreateAccountType.LoanAccount,CreateLoanAccount());
+                        return (Dictionary<CreateAccountType, IAccount>)dic;
+                    }
+                case CreateAccountType.TransactionAccount:
+                   {
+                       dic.Add(CreateAccountType.TransactionAccount, CreateTransactionAccount());
+                       return (Dictionary<CreateAccountType, IAccount>)dic;
+                   }
+                case CreateAccountType.DepositAccount|CreateAccountType.LoanAccount:
+                   {
+                       dic.Add(CreateAccountType.DepositAccount, CreateDebitAccount());
+                       dic.Add(CreateAccountType.LoanAccount, CreateLoanAccount());
+                       return (Dictionary<CreateAccountType, IAccount>)dic;
+                   }
+                case CreateAccountType.DepositAccount|CreateAccountType.TransactionAccount:    
+                    {
+                        dic.Add(CreateAccountType.DepositAccount, CreateDebitAccount());
+                        dic.Add(CreateAccountType.LoanAccount, CreateTransactionAccount());
+                        return (Dictionary<CreateAccountType, IAccount>)dic;
+                    }
+                case CreateAccountType.LoanAccount|CreateAccountType.TransactionAccount:
+                    {
+                        dic.Add(CreateAccountType.LoanAccount, CreateLoanAccount());
+                        dic.Add(CreateAccountType.TransactionAccount, CreateTransactionAccount());
+                        return (Dictionary<CreateAccountType, IAccount>)dic;
+                    }
+                case CreateAccountType.LoanAccount|CreateAccountType.TransactionAccount|CreateAccountType.DepositAccount:
+                    {
+                        dic.Add(CreateAccountType.LoanAccount, CreateLoanAccount());
+                        dic.Add(CreateAccountType.TransactionAccount, CreateTransactionAccount());
+                        dic.Add(CreateAccountType.DepositAccount, CreateDebitAccount());
+                        return (Dictionary<CreateAccountType, IAccount>)dic;
+                    }
+                default:
+                    {
+                        dic = null;
+                        return (Dictionary<CreateAccountType, IAccount>)dic;
+                    }
+                    
+            }
+            
         }
 
-    }
+    
     }
 }

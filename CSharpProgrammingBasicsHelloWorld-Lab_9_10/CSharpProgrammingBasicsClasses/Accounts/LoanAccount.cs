@@ -9,6 +9,8 @@ namespace CSharpProgrammingBasicsClasses
     /// <summary>
     /// Klasa za rabota so KREDITI
     /// </summary>
+    /// 
+    [AccountMetadata(AccountDescription = "Ova e Debitna smetka", AccountLimitations = "LIMIT=/")]
     sealed public class LoanAccount : DepositAccount, ILoanAccount
     {
         /// <summary>

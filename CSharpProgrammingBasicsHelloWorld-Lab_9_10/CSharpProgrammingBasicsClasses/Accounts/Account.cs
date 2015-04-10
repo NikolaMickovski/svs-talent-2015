@@ -12,6 +12,7 @@ namespace CSharpProgrammingBasicsClasses
     public abstract class Account : IAccount
     {
         public long ID { get; private set; }
+        [FormatRestriction(MaxLength = 16, formatString = "XXXX-XXXX-XXXX-XXXX")]
         public string Number { get; private set; }
         public string Currency { get; private set; }
 

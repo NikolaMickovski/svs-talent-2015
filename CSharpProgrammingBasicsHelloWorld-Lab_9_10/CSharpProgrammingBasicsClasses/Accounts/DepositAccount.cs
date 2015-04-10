@@ -9,6 +9,8 @@ namespace CSharpProgrammingBasicsClasses
     /// <summary>
     /// Klasa za rabota so Deposit
     /// </summary>
+    /// 
+    [AccountMetadata(AccountDescription = "Ova e Depositna smetka", AccountLimitations = "LIMIT=50.000")]
     public class DepositAccount : Account, IDepositAccount
     {
         #region PROPERTIES & FIELDS

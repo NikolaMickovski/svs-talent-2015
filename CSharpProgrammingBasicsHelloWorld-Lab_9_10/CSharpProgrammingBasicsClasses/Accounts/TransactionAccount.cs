@@ -9,6 +9,8 @@ namespace CSharpProgrammingBasicsClasses
     /// <summary>
     /// Klasata TransactionAccount nasleduva od klasata ACCOUNT
     /// </summary>
+    /// 
+    [AccountMetadata(AccountDescription="Ova e transakciska smetka",AccountLimitations="LIMIT=100.000")]
     public class TransactionAccount : Account, ITransactionAccount
     {
         public CurrencyAmount Limit { get; private set; }

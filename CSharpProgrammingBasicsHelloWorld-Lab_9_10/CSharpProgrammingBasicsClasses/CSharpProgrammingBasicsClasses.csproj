@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Accounts\Account.cs" />
     <Compile Include="Accounts\DepositAccount.cs" />
+    <Compile Include="Common\Attributes.cs" />
     <Compile Include="Common\CreateAccountType.cs" />
     <Compile Include="Common\Delegates.cs" />
     <Compile Include="Helpers\AccountHelper.cs" />
