@@ -253,6 +253,11 @@ namespace CSharpProgrammingBasicsTransactionApp
                 "Arg 2 (Tekovnoto saldo bilo): " + eventArgs.Account.Balance.amount.ToString() + "\n" +
                 "Arg 3 (A sega iznesuva): " + eventArgs.Change.amount.ToString());
         }
+        private Dictionary<CreateAccountType, IAccount> CreateAccounts (CreateAccountType accountTypesToCreate, ITransactionAccount transactionAccount)
+        {
+            if (acc)
+        }
 
+    }
     }
 }
