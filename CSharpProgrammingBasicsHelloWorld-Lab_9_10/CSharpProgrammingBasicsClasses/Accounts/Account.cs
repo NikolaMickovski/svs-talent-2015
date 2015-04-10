@@ -91,7 +91,7 @@ namespace CSharpProgrammingBasicsClasses
             this.Currency = currency;
             CurrencyAmount _balance = this.Balance;
             _balance.amount = rm.Next(80000,100000);
-            _balance.currency = "EUR";
+            _balance.currency = "MKD";
             this.Balance = _balance;
         }
 
@@ -133,9 +133,18 @@ namespace CSharpProgrammingBasicsClasses
             this.Balance = _balance;
 
             //dokolku vleznata VALUTA e ista so valutata na smetkata, vrati COMPLETED
-            if (CompareCurrency(amount)) return TransactionStatus.Completed;
+            if (CompareCurrency(amount))
+            {
+
+                return TransactionStatus.Completed;
+            }
             //vo sprotiven slucaj vrati FAILED
-            else return TransactionStatus.Failed;
+            else
+            {
+                throw new ApplicationException("Originalna valuta: " + this._balance.currency +
+                ", a vlezna valuta: " + amount.currency);
+                return TransactionStatus.Failed;
+            }
         }
         /// <summary>
         /// metod koj zgolemuva balansot na smetkata

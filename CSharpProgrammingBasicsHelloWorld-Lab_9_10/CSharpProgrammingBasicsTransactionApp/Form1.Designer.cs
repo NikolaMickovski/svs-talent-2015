@@ -73,6 +73,8 @@
             this.lblTLE_CA_currency = new System.Windows.Forms.Label();
             this.lblTLE_Accounts = new System.Windows.Forms.Label();
             this.lblTLE_Status = new System.Windows.Forms.Label();
+            this.txtTransactionAmount = new System.Windows.Forms.TextBox();
+            this.txtTransactionCurrency = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -482,11 +484,29 @@
             this.lblTLE_Status.TabIndex = 52;
             this.lblTLE_Status.Text = "label5";
             // 
+            // txtTransactionAmount
+            // 
+            this.txtTransactionAmount.Location = new System.Drawing.Point(49, 453);
+            this.txtTransactionAmount.Name = "txtTransactionAmount";
+            this.txtTransactionAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtTransactionAmount.TabIndex = 53;
+            this.txtTransactionAmount.Text = "Insert Amount";
+            // 
+            // txtTransactionCurrency
+            // 
+            this.txtTransactionCurrency.Location = new System.Drawing.Point(49, 480);
+            this.txtTransactionCurrency.Name = "txtTransactionCurrency";
+            this.txtTransactionCurrency.Size = new System.Drawing.Size(100, 20);
+            this.txtTransactionCurrency.TabIndex = 54;
+            this.txtTransactionCurrency.Text = "Insert Currency";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 554);
+            this.Controls.Add(this.txtTransactionCurrency);
+            this.Controls.Add(this.txtTransactionAmount);
             this.Controls.Add(this.lblTLE_Status);
             this.Controls.Add(this.lblTLE_Accounts);
             this.Controls.Add(this.lblTLE_CA_currency);
@@ -587,6 +607,8 @@
         private System.Windows.Forms.Label lblTLE_CA_currency;
         private System.Windows.Forms.Label lblTLE_Accounts;
         private System.Windows.Forms.Label lblTLE_Status;
+        private System.Windows.Forms.TextBox txtTransactionAmount;
+        private System.Windows.Forms.TextBox txtTransactionCurrency;
     }
 }
 

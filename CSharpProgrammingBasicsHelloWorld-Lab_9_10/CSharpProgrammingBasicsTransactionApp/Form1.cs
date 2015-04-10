@@ -196,7 +196,9 @@ namespace CSharpProgrammingBasicsTransactionApp
         /// <param name="e"></param>
         private void btnMakeGroupTransaction_Click(object sender, EventArgs e)
         {
-            IAccount[] niza_smetki;
+            string _errorMsg = null;
+            try {
+                IAccount[] niza_smetki;
             niza_smetki = new IAccount[2];
            // niza_smetki = null; 
 
@@ -215,11 +217,21 @@ namespace CSharpProgrammingBasicsTransactionApp
             //Na sekoja smetka sakame da prefrlime 20.000,00 denari
             //ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
-            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(21000, "MKD"), niza_smetki);
+            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
 
             PopulateAccounts(da, la);
             DisplayLastTransactionDetailsWithKey(tp);
             CreateAccounts(CreateAccountType.DepositAccount|CreateAccountType.LoanAccount, null);
+                }
+            catch (ApplicationException ae)
+            {
+                bool _errorOccurred = true;
+                _errorMsg = ae.Message;
+            }
+            finally 
+            {
+                MessageBox.Show(_errorMsg);
+            }
         }
 
         /// <summary>
