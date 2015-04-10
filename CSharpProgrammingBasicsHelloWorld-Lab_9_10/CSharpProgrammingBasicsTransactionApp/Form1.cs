@@ -117,20 +117,21 @@ namespace CSharpProgrammingBasicsTransactionApp
             //Kreirame objekt od klasata TransactionAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - Account Constructor with ONE PARAM)
             ITransactionAccount ta = new TransactionAccount(
                 txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
-
+            ta.OnBalanceChanged += OnBalanceChanged_Handler;
 
             //Kreirame objekt od klasata DepositAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - DEFAULT Account Constructor)
             IDepositAccount da = CreateDebitAccount();
-
+            da.OnBalanceChanged += OnBalanceChanged_Handler;
             //Kreirame objekt od klasata LoanAccount, (default ke ima 100.000 den na smetka, ID ke e auto-generated,
             //Default constructor na LoanAccount --> Default Constructor na DepositAccount --> Default Constructor na Account)
-            ILoanAccount la = CreateLoanAccount();
+           ILoanAccount la = CreateLoanAccount();
+           la.OnBalanceChanged += OnBalanceChanged_Handler;
            
             //Kreirame objekt od klasata TransactionProcessor koj ke e odgovoren za izvrsuvanje transakcija
            // ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
             
-            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
+            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da, ta);
             PopulateAccounts(ta, da);
            
             // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
@@ -201,13 +202,14 @@ namespace CSharpProgrammingBasicsTransactionApp
             //niza_smetki[0] = null;
             //Kreirame ILoanAccount
             ILoanAccount la = CreateLoanAccount();
-
+            la.OnBalanceChanged += OnBalanceChanged_Handler;
+            
             niza_smetki[1] = la;
             //niza_smetki[1] = null;
             //Na sekoja smetka sakame da prefrlime 20.000,00 denari
             //ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
-            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(27000, "MKD"), niza_smetki);
+            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(21000, "MKD"), niza_smetki);
 
             PopulateAccounts(da, la);
             DisplayLastTransactionDetailsWithKey(tp);
@@ -248,8 +250,8 @@ namespace CSharpProgrammingBasicsTransactionApp
         {
             Console.WriteLine(
                 "Arg 1 (Accout Number): " + eventArgs.Account.Number + "\n" +
-                "Arg 2 (Tekovno saldo): " + eventArgs.Account.Balance.amount.ToString() + "\n" +
-                "Arg 3 (Promena za vrednost): " + eventArgs.Change.amount.ToString());
+                "Arg 2 (Tekovnoto saldo bilo): " + eventArgs.Account.Balance.amount.ToString() + "\n" +
+                "Arg 3 (A sega iznesuva): " + eventArgs.Change.amount.ToString());
         }
 
     }

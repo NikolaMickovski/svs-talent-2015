@@ -61,8 +61,9 @@ namespace CSharpProgrammingBasicsClasses
             {
                 case TransactionType.Transfer:
                     {
-                        TransactionStatus eden = AccountTo.CreditAmount(Amount);
                         TransactionStatus dva = AccountFrom.DebitAmount(Amount);
+                        TransactionStatus eden = AccountTo.CreditAmount(Amount);
+                        
                         if (eden == dva)
                         {
                            TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));

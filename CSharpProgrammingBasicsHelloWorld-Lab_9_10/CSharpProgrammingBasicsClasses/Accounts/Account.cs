@@ -14,6 +14,14 @@ namespace CSharpProgrammingBasicsClasses
         public long ID { get; private set; }
         public string Number { get; private set; }
         public string Currency { get; private set; }
+
+        //Bidejki ke pravime proverki za opredelen uslov vo SET - metodot,
+        //za da ne dojde do STACKOVERFLOW - Exception (t.e. edna
+        //f-ja rekurzivno da se povikuva samata sebe), treba da kreirame i edno
+        //privatno pole _balance koe ke se postavuva i ke se zema
+        //vo SET i GET metodite
+        //HINT: Balance is a VALUE TYPE (it is a struct)
+        private CurrencyAmount _balance;
         /// <summary>
         /// Property koe e STRUCT
         /// </summary>
@@ -21,28 +29,48 @@ namespace CSharpProgrammingBasicsClasses
         {
             get
             {
-                decimal pom1 = 0;
-                string pom2 = null;
-                return new CurrencyAmount(pom1, pom2);
-            }
+                return _balance;                               
+            }            
             private set
             {
-                CurrencyAmount _balance = this.Balance;
-                decimal pom = this.Balance.amount;
-                _balance.amount = 100000;
-                _balance.currency = "EUR";
-                this.Balance = _balance;
-                if (value.amount != pom)
+                decimal _old_value = 0;
+                if(!(_balance.amount == 0 && _balance.currency == null))
                 {
-                    this.OnBalanceChanged(this, new BalanceChangedEventArguments(this, value));
+                    _old_value = _balance.amount;
+                    if (_balance.amount != value.amount)
+                    {
+                        //if (this.Equals(null)) { Console.Write("Null e Objektot\n"); }
+                        //if (value.Equals(null)) { Console.Write("Null e Value na Account\n"); }
+                        BalanceChangedEventArguments b = new BalanceChangedEventArguments((IAccount)this, value);
+                        //if (b.Equals(null)) { Console.Write("Null e B -object-ot\n"); }
+                        OnBalanceChanged(this, b);
+                        //this.OnBalanceChanged((IAccount)this, new BalanceChangedEventArguments((IAccount)this, value));
+                    }
                 }
-                /*
-                CurrencyAmount _balance = this.Balance;
-                _balance.amount = 100000;
-                _balance.currency = "EUR";
-                this.Balance = _balance;
-                 * */
+                _balance = value;
+                //this._balance = value;
+               // CurrencyAmount _balance = this.Balance;
+                
+                         
+                
             }
+            //{
+            //    CurrencyAmount _balance = this.Balance;
+            //    decimal pom = this.Balance.amount;
+            //    _balance.amount = 100000;
+            //    _balance.currency = "EUR";
+            //    this.Balance = _balance;
+            //    if (value.amount != pom)
+            //    {
+            //        this.OnBalanceChanged(this, new BalanceChangedEventArguments(this, value));
+            //    }
+            //    /*
+            //    CurrencyAmount _balance = this.Balance;
+            //    _balance.amount = 100000;
+            //    _balance.currency = "EUR";
+            //    this.Balance = _balance;
+            //     * */
+            //}
         }
 
 
@@ -55,12 +83,13 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="Currency">Valuta</param>
         public Account(long ID, string number, string currency)
         {
+            Random rm = new Random();
             //initialize Properties and Fields
             this.ID = ID;
             this.Number = number;
             this.Currency = currency;
             CurrencyAmount _balance = this.Balance;
-            _balance.amount = 100000;
+            _balance.amount = rm.Next(80000,100000);
             _balance.currency = "EUR";
             this.Balance = _balance;
         }
@@ -146,8 +175,13 @@ namespace CSharpProgrammingBasicsClasses
         
         #endregion
 
+                public event EventHandler<BalanceChangedEventArguments> OnBalanceChanged;
 
 
-        public event BalanceChanged OnBalanceChanged;
+                //event EventHandler<BalanceChangedEventArguments> IAccount.OnBalanceChanged
+                //{
+                //    add { throw new NotImplementedException(); }
+                //    remove { throw new NotImplementedException(); }
+                //}
     }
 }
