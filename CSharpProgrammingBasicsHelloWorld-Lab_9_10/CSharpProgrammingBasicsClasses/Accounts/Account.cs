@@ -84,6 +84,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="Currency">Valuta</param>
         public Account(long ID, string number, string currency)
         {
+            //Konstruktorot ke im dava proizvolna suma na smetka od 80.000 do 100.000 denari
             Random rm = new Random();
             //initialize Properties and Fields
             this.ID = ID;
@@ -109,15 +110,7 @@ namespace CSharpProgrammingBasicsClasses
         //Default Constructor
         public Account()
         {
-            /*
-            this.ID = Convert.ToInt64(AccountHelper.GenerateAccountID());
-            this.Number = GenerateAccountNumber();
-            this.Currency = "MKD";
-            CurrencyAmount _balance = this.Balance;
-            _balance.amount = 100000;
-            _balance.currency = "EUR";
-            this.Balance = _balance;
-             */ 
+           
         }
 
         #region PUBLIC METHODS
@@ -128,22 +121,21 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public virtual TransactionStatus DebitAmount(CurrencyAmount amount)
         {
-            CurrencyAmount _balance = this.Balance;
-            _balance.amount -= amount.amount;
-            this.Balance = _balance;
+            
 
             //dokolku vleznata VALUTA e ista so valutata na smetkata, vrati COMPLETED
             if (CompareCurrency(amount))
             {
-
+                CurrencyAmount _balance = this.Balance;
+                _balance.amount -= amount.amount;
+                this.Balance = _balance;
                 return TransactionStatus.Completed;
             }
             //vo sprotiven slucaj vrati FAILED
             else
             {
-                throw new ApplicationException("Originalna valuta: " + this._balance.currency +
-                ", a vlezna valuta: " + amount.currency);
-                return TransactionStatus.Failed;
+                throw new CurrencyMismatchException("Originalna valuta: " + this._balance.currency +
+                ", a vlezna valuta: " + amount.currency);                
             }
         }
         /// <summary>
@@ -153,14 +145,23 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public virtual TransactionStatus CreditAmount(CurrencyAmount amount)
         {
-            CurrencyAmount _balance = this.Balance;
-            _balance.amount += amount.amount;
-            this.Balance = _balance;
-
+           
             //dokolku vleznata VALUTA e ista so valutata na smetkata, vrati COMPLETED
-            if (CompareCurrency(amount)) return TransactionStatus.Completed;
+            if (CompareCurrency(amount))
+            {
+                CurrencyAmount _balance = this.Balance;
+                _balance.amount += amount.amount;
+                this.Balance = _balance;
+                return TransactionStatus.Completed;
+            }
+
             //vo sprotiven slucaj vrati FAILED
-            else return TransactionStatus.Failed;
+            else
+            {
+                throw new CurrencyMismatchException("Originalna valuta: " + this._balance.currency +
+                ", a vlezna valuta: " + amount.currency);                
+            }
+
         }
         #endregion
         #region PRIVATE METHODS
@@ -185,13 +186,12 @@ namespace CSharpProgrammingBasicsClasses
         
         #endregion
 
-                public event EventHandler<BalanceChangedEventArguments> OnBalanceChanged;
+        /// <summary>
+        /// Implementacija na event-ot
+        /// </summary>
+        public event EventHandler<BalanceChangedEventArguments> OnBalanceChanged;
 
 
-                //event EventHandler<BalanceChangedEventArguments> IAccount.OnBalanceChanged
-                //{
-                //    add { throw new NotImplementedException(); }
-                //    remove { throw new NotImplementedException(); }
-                //}
+              
     }
 }

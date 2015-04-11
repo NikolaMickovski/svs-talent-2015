@@ -8,6 +8,12 @@ namespace CSharpProgrammingBasicsClasses
 {
     public class CurrencyMismatchException:ApplicationException
     {
+        public string message { get; private set; }
+        public CurrencyMismatchException(string s)
+        {
+            this.message = s;
+        }
 
+        
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="Common\CreateAccountType.cs" />
     <Compile Include="Common\CurrencyMismatchException.cs" />
     <Compile Include="Common\Delegates.cs" />
+    <Compile Include="Extensions\ProcessorExtensions.cs" />
     <Compile Include="Helpers\AccountHelper.cs" />
     <Compile Include="Interfaces\IDepositAccount.cs" />
     <Compile Include="Interfaces\ILoanAccount.cs" />

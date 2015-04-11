@@ -78,15 +78,19 @@ namespace CSharpProgrammingBasicsClasses
                     }
                 case TransactionType.Debit:
                     {
+                        //Prvo treba da izvrsime DEBIT, ako ne frli greska, treba da se logira transakcijata
+                        TransactionStatus pom = AccountFrom.DebitAmount(Amount);
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                         CallExternalLogger(AccountFrom, TransactionType, Amount);
-                        return AccountFrom.DebitAmount(Amount);
+                        return pom;
                     }
                 case TransactionType.Credit:
                     {
+                        //Prvo treba da izvrsime CREDIT, ako ne frli greska, treba da se logira transakcijata
+                        TransactionStatus pom = AccountFrom.CreditAmount(Amount);
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                         CallExternalLogger(AccountFrom, TransactionType, Amount);
-                        return AccountFrom.CreditAmount(Amount);
+                        return pom;
                     }
                 default: return TransactionStatus.None;
             }

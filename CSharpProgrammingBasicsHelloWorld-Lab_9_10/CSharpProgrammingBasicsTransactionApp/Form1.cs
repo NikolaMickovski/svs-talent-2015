@@ -71,7 +71,8 @@ namespace CSharpProgrammingBasicsTransactionApp
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-           
+            IDepositAccount Ida = CreateDeposit_Loan_Account<LoanAccount>(new TransactionAccount());
+            Console.WriteLine(Ida.Number.ToString());
         }
         /// <summary>
         /// Metod koj kreira instanca od klasata DEPOSIT ACCOUNT
@@ -131,7 +132,7 @@ namespace CSharpProgrammingBasicsTransactionApp
            // ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
             
-            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da, ta);
+            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
             PopulateAccounts(ta, da);
            
             // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
@@ -175,6 +176,35 @@ namespace CSharpProgrammingBasicsTransactionApp
         }
 
         /// <summary>
+        /// Metod za genericko generiranje na nova smetka Deposit ili Debit
+        /// </summary>
+        /// <typeparam name="Class_Type"></typeparam>
+        /// <param name="ta"></param>
+        /// <returns></returns>
+        private IDepositAccount CreateDeposit_Loan_Account<Class_Type> (TransactionAccount ta) where Class_Type:DepositAccount,new()    
+        {
+            Class_Type c_t = new Class_Type();
+            if (c_t.GetType() == typeof(DepositAccount))
+            {
+                return new DepositAccount(txtCurrency.Text,
+                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
+                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
+                (DateTime)dtpStartDate.Value,
+                (DateTime)dtpEndDate.Value,
+                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
+            }
+            if (c_t.GetType() == typeof(LoanAccount))
+            {
+                return new LoanAccount(txtCurrency.Text,
+                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
+                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
+                (DateTime)dtpStartDate.Value,
+                (DateTime)dtpEndDate.Value,
+                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
+            }
+            return c_t;
+        }
+        /// <summary>
         /// Metod koj vraka instanca od Deposit Account
         /// </summary>
         /// <returns></returns>
@@ -197,6 +227,7 @@ namespace CSharpProgrammingBasicsTransactionApp
         private void btnMakeGroupTransaction_Click(object sender, EventArgs e)
         {
             string _errorMsg = null;
+            bool _errorOccurred = false;
             try {
                 IAccount[] niza_smetki;
             niza_smetki = new IAccount[2];
@@ -223,14 +254,25 @@ namespace CSharpProgrammingBasicsTransactionApp
             DisplayLastTransactionDetailsWithKey(tp);
             CreateAccounts(CreateAccountType.DepositAccount|CreateAccountType.LoanAccount, null);
                 }
+            catch(CurrencyMismatchException cme)
+            {
+                _errorOccurred = true;
+                _errorMsg = cme.message;
+               ;
+            }
             catch (ApplicationException ae)
             {
-                bool _errorOccurred = true;
-                _errorMsg = ae.Message;
+               
+               _errorMsg += ae.Message;
+                throw;
+                //_errorMsg += "! A SEGA I APPLICATION EXCEPTION";
             }
             finally 
             {
-                MessageBox.Show(_errorMsg);
+                if (_errorOccurred)
+                {
+                    MessageBox.Show(_errorMsg);
+                }
             }
         }
 
