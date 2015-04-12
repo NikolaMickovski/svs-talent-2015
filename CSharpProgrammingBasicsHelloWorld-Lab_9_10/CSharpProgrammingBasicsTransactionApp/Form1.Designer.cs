@@ -75,6 +75,7 @@
             this.lblTLE_Status = new System.Windows.Forms.Label();
             this.txtTransactionAmount = new System.Windows.Forms.TextBox();
             this.txtTransactionCurrency = new System.Windows.Forms.TextBox();
+            this.btnChargeFee = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -500,11 +501,22 @@
             this.txtTransactionCurrency.TabIndex = 54;
             this.txtTransactionCurrency.Text = "Insert Currency";
             // 
+            // btnChargeFee
+            // 
+            this.btnChargeFee.Location = new System.Drawing.Point(239, 401);
+            this.btnChargeFee.Name = "btnChargeFee";
+            this.btnChargeFee.Size = new System.Drawing.Size(75, 23);
+            this.btnChargeFee.TabIndex = 55;
+            this.btnChargeFee.Text = "Charge Fee";
+            this.btnChargeFee.UseVisualStyleBackColor = true;
+            this.btnChargeFee.Click += new System.EventHandler(this.btnChargeFee_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 554);
+            this.Controls.Add(this.btnChargeFee);
             this.Controls.Add(this.txtTransactionCurrency);
             this.Controls.Add(this.txtTransactionAmount);
             this.Controls.Add(this.lblTLE_Status);
@@ -609,6 +621,7 @@
         private System.Windows.Forms.Label lblTLE_Status;
         private System.Windows.Forms.TextBox txtTransactionAmount;
         private System.Windows.Forms.TextBox txtTransactionCurrency;
+        private System.Windows.Forms.Button btnChargeFee;
     }
 }
 

@@ -56,6 +56,8 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public TransactionStatus ProcessTransaction(TransactionType TransactionType, CurrencyAmount Amount, IAccount AccountFrom, IAccount AccountTo)
         {
+          //  int charged_amount = 0;
+            
             //throw new NotImplementedException();
             switch (TransactionType)
             {
@@ -80,6 +82,13 @@ namespace CSharpProgrammingBasicsClasses
                     {
                         //Prvo treba da izvrsime DEBIT, ako ne frli greska, treba da se logira transakcijata
                         TransactionStatus pom = AccountFrom.DebitAmount(Amount);
+                        if (AccountFrom.GetType() == typeof(LoanAccount) || AccountFrom.GetType() == typeof(DepositAccount))
+                        {
+                            Console.WriteLine("Charged 15,00 MKD\n");
+                            //Da se odzemat 15.00 MKD od smetkata
+                            TransactionStatus pom1 = AccountFrom.DebitAmount(new CurrencyAmount(Amount.amount-15,Amount.currency));
+                        }
+                        //AccountFrom.Balance.amount -= Convert.ToDecimal(15);
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                         CallExternalLogger(AccountFrom, TransactionType, Amount);
                         return pom;
@@ -94,6 +103,7 @@ namespace CSharpProgrammingBasicsClasses
                     }
                 default: return TransactionStatus.None;
             }
+            
         }
 
         #region bool CheckAccounts
@@ -252,5 +262,11 @@ namespace CSharpProgrammingBasicsClasses
              //   throw new NotImplementedException();
             }
         }*/
+
+
+        //public TransactionStatus ChargeProcessingFee(CurrencyAmount amount, IAccount[] accounts)
+        //{
+        //    return ProcessGroupTransaction(TransactionType.Debit, amount, accounts);
+        //}
     }
 }

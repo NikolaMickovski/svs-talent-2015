@@ -11,6 +11,7 @@ namespace CSharpProgrammingBasicsClasses
     /// </summary>
     public abstract class Account : IAccount
     {
+        #region FIELDS & PROPERTIES
         public long ID { get; private set; }
         [FormatRestriction(MaxLength = 16, formatString = "XXXX-XXXX-XXXX-XXXX")]
         public string Number { get; private set; }
@@ -40,41 +41,15 @@ namespace CSharpProgrammingBasicsClasses
                     _old_value = _balance.amount;
                     if (_balance.amount != value.amount)
                     {
-                        //if (this.Equals(null)) { Console.Write("Null e Objektot\n"); }
-                        //if (value.Equals(null)) { Console.Write("Null e Value na Account\n"); }
                         BalanceChangedEventArguments b = new BalanceChangedEventArguments((IAccount)this, value);
-                        //if (b.Equals(null)) { Console.Write("Null e B -object-ot\n"); }
-                        OnBalanceChanged(this, b);
-                        //this.OnBalanceChanged((IAccount)this, new BalanceChangedEventArguments((IAccount)this, value));
-                    }
+                        
+                        OnBalanceChanged(this, b);}
                 }
                 _balance = value;
-                //this._balance = value;
-               // CurrencyAmount _balance = this.Balance;
-                
-                         
-                
-            }
-            //{
-            //    CurrencyAmount _balance = this.Balance;
-            //    decimal pom = this.Balance.amount;
-            //    _balance.amount = 100000;
-            //    _balance.currency = "EUR";
-            //    this.Balance = _balance;
-            //    if (value.amount != pom)
-            //    {
-            //        this.OnBalanceChanged(this, new BalanceChangedEventArguments(this, value));
-            //    }
-            //    /*
-            //    CurrencyAmount _balance = this.Balance;
-            //    _balance.amount = 100000;
-            //    _balance.currency = "EUR";
-            //    this.Balance = _balance;
-            //     * */
-            //}
-        }
+            }            
+        }//End Property
 
-
+        #endregion
 
         /// <summary>
         /// Constructor with three parametars

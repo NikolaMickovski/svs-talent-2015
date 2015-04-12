@@ -17,8 +17,6 @@ namespace CSharpProgrammingBasicsTransactionApp
         {
             InitializeComponent();
         }
-
-        
         /// <summary>
         /// Metod koj kreiра Transaction Account i prikazuva informacii za istata
         /// </summary>
@@ -71,8 +69,9 @@ namespace CSharpProgrammingBasicsTransactionApp
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            IDepositAccount Ida = CreateDeposit_Loan_Account<LoanAccount>(new TransactionAccount());
-            Console.WriteLine(Ida.Number.ToString());
+           // IDepositAccount Ida = CreateDeposit_Loan_Account<LoanAccount>(new TransactionAccount());
+          //  Console.WriteLine(Ida.Number.ToString());
+            
         }
         /// <summary>
         /// Metod koj kreira instanca od klasata DEPOSIT ACCOUNT
@@ -85,7 +84,10 @@ namespace CSharpProgrammingBasicsTransactionApp
             PopulateAccountCommon(da);
            // IsItDepositAccount(da);
         }
-
+        /// <summary>
+        /// Proverka i ispisuvanje na informacii za DepositAccount
+        /// </summary>
+        /// <param name="a"></param>
         private void IsItDepositAccount(IAccount a)
         {
             if (a is DepositAccount)
@@ -176,7 +178,7 @@ namespace CSharpProgrammingBasicsTransactionApp
         }
 
         /// <summary>
-        /// Metod za genericko generiranje na nova smetka Deposit ili Debit
+        /// Metod za genericko generiranje na nova smetka Deposit ili Loan
         /// </summary>
         /// <typeparam name="Class_Type"></typeparam>
         /// <param name="ta"></param>
@@ -228,32 +230,32 @@ namespace CSharpProgrammingBasicsTransactionApp
         {
             string _errorMsg = null;
             bool _errorOccurred = false;
-            try {
+            try 
+            {
                 IAccount[] niza_smetki;
-            niza_smetki = new IAccount[2];
-           // niza_smetki = null; 
-
-            //Kreirame IDepositAccount
-            IDepositAccount da = CreateDebitAccount();
-            da.OnBalanceChanged+=OnBalanceChanged_Handler;
+                niza_smetki = new IAccount[2];
            
-            niza_smetki[0] = da;
-            //niza_smetki[0] = null;
-            //Kreirame ILoanAccount
-            ILoanAccount la = CreateLoanAccount();
-            la.OnBalanceChanged += OnBalanceChanged_Handler;
-            
-            niza_smetki[1] = la;
-            //niza_smetki[1] = null;
-            //Na sekoja smetka sakame da prefrlime 20.000,00 denari
-            //ITransactionProcessor tp = new TransactionProcessor();
-            ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
-            tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+                //Kreirame IDepositAccount
+                IDepositAccount da = CreateDebitAccount();
+                da.OnBalanceChanged+=OnBalanceChanged_Handler;
+           
+                niza_smetki[0] = da;
+                ILoanAccount la = CreateLoanAccount();
+                la.OnBalanceChanged += OnBalanceChanged_Handler;
 
-            PopulateAccounts(da, la);
-            DisplayLastTransactionDetailsWithKey(tp);
-            CreateAccounts(CreateAccountType.DepositAccount|CreateAccountType.LoanAccount, null);
-                }
+                niza_smetki[1] = la;
+               
+                ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
+                tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+
+                PopulateAccounts(da, la);
+                
+                
+                
+                DisplayLastTransactionDetailsWithKey(tp);
+                CreateAccounts(CreateAccountType.DepositAccount|CreateAccountType.LoanAccount, null);
+                
+            }
             catch(CurrencyMismatchException cme)
             {
                 _errorOccurred = true;
@@ -324,11 +326,7 @@ namespace CSharpProgrammingBasicsTransactionApp
         private Dictionary<CreateAccountType, IAccount> CreateAccounts (CreateAccountType accountTypesToCreate, ITransactionAccount transactionAccount)
         {
             IDictionary<CreateAccountType, IAccount> dic = new Dictionary<CreateAccountType, IAccount>();
-            //CreateAccountType all = CreateAccountType.DepositAccount|CreateAccountType.LoanAccount|CreateAccountType.TransactionAccount;
-            //Console.WriteLine(all + "\n");
-            //CreateAccountType whichToSet = all & accountTypesToCreate;
-            //Console.WriteLine(whichToSet + "\n");
-
+            
             switch(accountTypesToCreate)
             {
                 case CreateAccountType.DepositAccount:
@@ -379,6 +377,41 @@ namespace CSharpProgrammingBasicsTransactionApp
                     
             }
             
+        }
+
+        private void btnChargeFee_Click(object sender, EventArgs e)
+        {
+            IAccount[] niza_smetki;
+            niza_smetki = new IAccount[2];
+
+            //Kreirame IDepositAccount
+            IDepositAccount da = CreateDebitAccount();
+            da.OnBalanceChanged += OnBalanceChanged_Handler;
+
+            niza_smetki[0] = da;
+            ILoanAccount la = CreateLoanAccount();
+            la.OnBalanceChanged += OnBalanceChanged_Handler;
+
+            niza_smetki[1] = la;
+            IList <IAccount> niza = new List<IAccount> (niza_smetki);
+            ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
+           // tp.ProcessGroupTransaction(TransactionType.Debit, new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+            //ProcessorExtension.ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+            
+            //Call the extension method
+            ProcessorExtensions.ChargeProcessingFee(tp,new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+            
+            //Call the method
+            tp.ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza);
+            
+           PopulateAccounts(da, la);
+
+
+
+            DisplayLastTransactionDetailsWithKey(tp);
+            CreateAccounts(CreateAccountType.DepositAccount | CreateAccountType.LoanAccount, null);
+
+           // TransactionProcessor.GetTransactionProcessor().ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
         }
 
     

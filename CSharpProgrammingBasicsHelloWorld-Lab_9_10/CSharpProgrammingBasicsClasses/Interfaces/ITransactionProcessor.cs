@@ -30,7 +30,7 @@ namespace CSharpProgrammingBasicsClasses
             IAccount AccountFrom, IAccount AccountTo);
 
         TransactionStatus ProcessGroupTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts);
-
+      //  TransactionStatus ChargeProcessingFee(CurrencyAmount amount, IAccount[] accounts);
 
     }
 }

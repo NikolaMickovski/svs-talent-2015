@@ -8,9 +8,18 @@ namespace CSharpProgrammingBasicsClasses
 {
     public static class ProcessorExtensions
     {
-        public static TransactionStatus ChargeProcessingFee(this ITransactionProcessor processor, CurrencyAmount amount, IAccount[] accounts)
+        /// <summary>
+        /// Metod koj treba da namali 15 denari od smetka!
+        /// </summary>
+        /// <param name="processor"></param>
+        /// <param name="amount"></param>
+        /// <param name="accounts"></param>
+        /// <returns></returns>
+        public static TransactionStatus ChargeProcessingFee(this ITransactionProcessor processor, CurrencyAmount amount, IEnumerable<IAccount> accounts)
         {
-            return processor.ProcessGroupTransaction(TransactionType.Debit,amount,accounts);
+            //upotreba na .ToArray()
+            IAccount[] niza_smetki= accounts.ToArray();
+            return processor.ProcessGroupTransaction(TransactionType.Debit,amount,niza_smetki);
         }
     }
 }
