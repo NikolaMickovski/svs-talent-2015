@@ -124,15 +124,15 @@ namespace CSharpProgrammingBasicsTransactionApp
         /// <param name="e"></param>
         private void btnMakeTransaction_Click(object sender, EventArgs e)
         {
-            //Kreirame objekt od klasata TransactionAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - Account Constructor with ONE PARAM)
+            //Kreirame objekt od klasata TransactionAccount (default ke ima Random den na smetka, ID ke e auto-generated - Account Constructor with ONE PARAM)
             ITransactionAccount ta = new TransactionAccount(
                 txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
             ta.OnBalanceChanged += OnBalanceChanged_Handler;
 
-            //Kreirame objekt od klasata DepositAccount (default ke ima 100.000 den na smetka, ID ke e auto-generated - DEFAULT Account Constructor)
+            //Kreirame objekt od klasata DepositAccount (default ke ima Random den na smetka, ID ke e auto-generated - DEFAULT Account Constructor)
             IDepositAccount da = CreateDebitAccount();
             da.OnBalanceChanged += OnBalanceChanged_Handler;
-            //Kreirame objekt od klasata LoanAccount, (default ke ima 100.000 den na smetka, ID ke e auto-generated,
+            //Kreirame objekt od klasata LoanAccount, (default ke ima Random den na smetka, ID ke e auto-generated,
             //Default constructor na LoanAccount --> Default Constructor na DepositAccount --> Default Constructor na Account)
             ILoanAccount la = CreateLoanAccount();
             la.OnBalanceChanged += OnBalanceChanged_Handler;
@@ -141,7 +141,7 @@ namespace CSharpProgrammingBasicsTransactionApp
             // ITransactionProcessor tp = new TransactionProcessor();
             ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
 
-            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), ta, da);
+            tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(28000, "MKD"), ta, da);
             PopulateAccounts(ta, da);
 
             // tp.ProcessTransaction(TransactionType.Transfer, new CurrencyAmount(20000, "MKD"), da,la);
