@@ -9,7 +9,6 @@ namespace CSharpProgrammingBasicsClasses
     /// <summary>
     /// Klasa za rabota so Deposit
     /// </summary>
-    /// 
     [AccountMetadata(AccountDescription = "Ova e Depositna smetka", AccountLimitations = "LIMIT=50.000")]
     public class DepositAccount : Account, IDepositAccount
     {
@@ -29,7 +28,7 @@ namespace CSharpProgrammingBasicsClasses
             this.Interest = interestRate;
             this.StartDate = startDate;
             this.EndDate = endDate;
-            TransactionAccount = transactionAccount;//dali e preoprovaren?
+            TransactionAccount = transactionAccount;
         }
 
         //Default Constructor

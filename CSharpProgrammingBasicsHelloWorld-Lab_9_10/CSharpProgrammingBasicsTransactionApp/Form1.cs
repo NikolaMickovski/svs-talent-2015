@@ -25,8 +25,11 @@ namespace CSharpProgrammingBasicsTransactionApp
         private void btnCreateTransactionAccount_Click(object sender, EventArgs e)
         {
             //kreirame objekt od klasata TransactionAccount
-            ITransactionAccount ta = new TransactionAccount(
-                txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
+            ITransactionAccount ta = CreateTransactionAccount();
+
+                //new TransactionAccount(
+                //txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
+
             //iako metodot PopulateAccountCommon prima objekt od klasata ACCOUNT
             //(koja e Abstract class), koristejki NASLEDUVANJE i APSTRAKCIJATA, moze da go 
             //povikame istiot metod so Objekt od izvedenata klasa (se dvizime nadole
@@ -170,11 +173,44 @@ namespace CSharpProgrammingBasicsTransactionApp
                 (DateTime)dtpEndDate.Value,
                 new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
         }
-
+        /// <summary>
+        /// Vo ovoj metod ke bide pokazana upotrebata na WRAPPING Exceptions
+        /// i iskoristeno svojstvoto InnerException
+        /// </summary>
+        /// <returns></returns>
         private TransactionAccount CreateTransactionAccount()
         {
-            return new TransactionAccount(
-                txtCurrency.Text, Convert.ToDecimal(txtLimit.Text));
+            
+            CurrencyAmount ca;
+            //Nadvoresen TRY - OUTSIDE WRAPPER
+            try
+            {
+                try //Vnatresen try koj ke frli greska od tip UserInterfaceException
+                {
+                    ca = ReadLimitTransaction(txtLimit.Text, txtCurrency.Text);
+                    return new TransactionAccount(ca.currency, ca.amount);
+                }
+                catch (FormatException e)
+                {
+                   
+                    throw new UserInterfaceException("Level UP", e);                   
+                }
+                catch (NullReferenceException e)
+                {
+                    
+                    throw new UserInterfaceException("Level UP", e);
+                }
+            }
+            catch (UserInterfaceException e)
+            {
+                //Zapisi ja VNATRESNATA greska vo nekoj Logger
+                ExceptionLogger.LogException(e.InnerException);
+                //Vrati Currency Aount - default
+                txtCurrency.Text = "MKD";
+                txtLimit.Text = "100";
+                return new TransactionAccount("MKD",100);
+            }
+            
         }
 
         /// <summary>
@@ -260,7 +296,8 @@ namespace CSharpProgrammingBasicsTransactionApp
             {
                 _errorOccurred = true;
                 _errorMsg = cme.message;
-               ;
+               // throw new UserInterfaceException(cme.Message, new CurrencyMismatchException("/"));
+               
             }
             catch (ApplicationException ae)
             {
@@ -276,6 +313,32 @@ namespace CSharpProgrammingBasicsTransactionApp
                     MessageBox.Show(_errorMsg);
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Privaten metod koj ke bide WRAPPER na greskite od UI
+        /// Konkretno, tuka se wrap-uvat NullException i InvalidCOnversion
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
+        /// <returns></returns>
+        private CurrencyAmount ReadLimitTransaction(string amount, string currency)
+        {
+            if (amount =="" || currency == "")
+            {
+                throw new NullReferenceException("Проблем во Корисничкиот интефејс - NULL VALUES\n");
+            }
+            decimal d = 0;
+            
+            if (!decimal.TryParse(amount, out d))
+            {
+                throw new FormatException("Проблем во Корисничкиот интефејс - DECIMAL NOT PARSED\n");
+            }
+            
+            CurrencyAmount ca = new CurrencyAmount(d,currency);
+            return ca;
+            
         }
 
         /// <summary>
@@ -379,8 +442,15 @@ namespace CSharpProgrammingBasicsTransactionApp
             
         }
 
+        /// <summary>
+        /// Del od kodot koj bese i kaj Make_groupTransaction e kopiran,
+        /// samo za da se pokaze koristenjeto na Extension method-ot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnChargeFee_Click(object sender, EventArgs e)
         {
+            bool err = false;
             IAccount[] niza_smetki;
             niza_smetki = new IAccount[2];
 
@@ -399,19 +469,30 @@ namespace CSharpProgrammingBasicsTransactionApp
             //ProcessorExtension.ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
             
             //Call the extension method
-            ProcessorExtensions.ChargeProcessingFee(tp,new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+            //ProcessorExtensions.ChargeProcessingFee(tp,new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza);
             
             //Call the method
-            tp.ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza);
-            
-           PopulateAccounts(da, la);
+            try
+            {
+                tp.ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "\n");
+                txtTransactionAmount.Text = "10";
+                txtTransactionCurrency.Text = "MKD";
+                err = true;
+            }
 
+            if (!err)
+            {
+                PopulateAccounts(da, la);
 
+                DisplayLastTransactionDetailsWithKey(tp);
+                CreateAccounts(CreateAccountType.DepositAccount | CreateAccountType.LoanAccount, null);
 
-            DisplayLastTransactionDetailsWithKey(tp);
-            CreateAccounts(CreateAccountType.DepositAccount | CreateAccountType.LoanAccount, null);
-
-           // TransactionProcessor.GetTransactionProcessor().ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+                // TransactionProcessor.GetTransactionProcessor().ChargeProcessingFee(new CurrencyAmount(Convert.ToDecimal(txtTransactionAmount.Text), txtTransactionCurrency.Text), niza_smetki);
+            }
         }
 
     

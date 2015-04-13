@@ -76,6 +76,8 @@
             this.txtTransactionAmount = new System.Windows.Forms.TextBox();
             this.txtTransactionCurrency = new System.Windows.Forms.TextBox();
             this.btnChargeFee = new System.Windows.Forms.Button();
+            this.lblSuma = new System.Windows.Forms.Label();
+            this.lblValuta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -268,7 +270,7 @@
             // lblDepositAccountPercent
             // 
             this.lblDepositAccountPercent.AutoSize = true;
-            this.lblDepositAccountPercent.Location = new System.Drawing.Point(405, 309);
+            this.lblDepositAccountPercent.Location = new System.Drawing.Point(408, 307);
             this.lblDepositAccountPercent.Name = "lblDepositAccountPercent";
             this.lblDepositAccountPercent.Size = new System.Drawing.Size(53, 13);
             this.lblDepositAccountPercent.TabIndex = 28;
@@ -277,7 +279,7 @@
             // lblDepositAccountUnit
             // 
             this.lblDepositAccountUnit.AutoSize = true;
-            this.lblDepositAccountUnit.Location = new System.Drawing.Point(405, 285);
+            this.lblDepositAccountUnit.Location = new System.Drawing.Point(408, 288);
             this.lblDepositAccountUnit.Name = "lblDepositAccountUnit";
             this.lblDepositAccountUnit.Size = new System.Drawing.Size(112, 13);
             this.lblDepositAccountUnit.TabIndex = 29;
@@ -286,7 +288,7 @@
             // lblDepositAccountPeriod
             // 
             this.lblDepositAccountPeriod.AutoSize = true;
-            this.lblDepositAccountPeriod.Location = new System.Drawing.Point(408, 268);
+            this.lblDepositAccountPeriod.Location = new System.Drawing.Point(408, 270);
             this.lblDepositAccountPeriod.Name = "lblDepositAccountPeriod";
             this.lblDepositAccountPeriod.Size = new System.Drawing.Size(48, 13);
             this.lblDepositAccountPeriod.TabIndex = 30;
@@ -295,7 +297,7 @@
             // lblDepositAccountUnitOfTime
             // 
             this.lblDepositAccountUnitOfTime.AutoSize = true;
-            this.lblDepositAccountUnitOfTime.Location = new System.Drawing.Point(406, 328);
+            this.lblDepositAccountUnitOfTime.Location = new System.Drawing.Point(408, 328);
             this.lblDepositAccountUnitOfTime.Name = "lblDepositAccountUnitOfTime";
             this.lblDepositAccountUnitOfTime.Size = new System.Drawing.Size(112, 13);
             this.lblDepositAccountUnitOfTime.TabIndex = 31;
@@ -322,7 +324,7 @@
             // lblAccountCurency_Base
             // 
             this.lblAccountCurency_Base.AutoSize = true;
-            this.lblAccountCurency_Base.Location = new System.Drawing.Point(408, 99);
+            this.lblAccountCurency_Base.Location = new System.Drawing.Point(408, 93);
             this.lblAccountCurency_Base.Name = "lblAccountCurency_Base";
             this.lblAccountCurency_Base.Size = new System.Drawing.Size(100, 13);
             this.lblAccountCurency_Base.TabIndex = 35;
@@ -349,7 +351,7 @@
             // lblAccountCurency_Base_TO
             // 
             this.lblAccountCurency_Base_TO.AutoSize = true;
-            this.lblAccountCurency_Base_TO.Location = new System.Drawing.Point(578, 99);
+            this.lblAccountCurency_Base_TO.Location = new System.Drawing.Point(578, 93);
             this.lblAccountCurency_Base_TO.Name = "lblAccountCurency_Base_TO";
             this.lblAccountCurency_Base_TO.Size = new System.Drawing.Size(100, 13);
             this.lblAccountCurency_Base_TO.TabIndex = 41;
@@ -425,7 +427,7 @@
             // lblTotalTransactionCount
             // 
             this.lblTotalTransactionCount.AutoSize = true;
-            this.lblTotalTransactionCount.Location = new System.Drawing.Point(49, 431);
+            this.lblTotalTransactionCount.Location = new System.Drawing.Point(46, 490);
             this.lblTotalTransactionCount.Name = "lblTotalTransactionCount";
             this.lblTotalTransactionCount.Size = new System.Drawing.Size(124, 13);
             this.lblTotalTransactionCount.TabIndex = 46;
@@ -434,60 +436,57 @@
             // lblTransactionLogEntrydetails
             // 
             this.lblTransactionLogEntrydetails.AutoSize = true;
+            this.lblTransactionLogEntrydetails.BackColor = System.Drawing.SystemColors.Highlight;
+            this.lblTransactionLogEntrydetails.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblTransactionLogEntrydetails.Location = new System.Drawing.Point(408, 373);
             this.lblTransactionLogEntrydetails.Name = "lblTransactionLogEntrydetails";
-            this.lblTransactionLogEntrydetails.Size = new System.Drawing.Size(141, 13);
+            this.lblTransactionLogEntrydetails.Size = new System.Drawing.Size(175, 13);
             this.lblTransactionLogEntrydetails.TabIndex = 47;
-            this.lblTransactionLogEntrydetails.Text = "TransactionLogEntry details:";
+            this.lblTransactionLogEntrydetails.Text = "Детали од последна трансакција";
             // 
             // lblTLETransactionType
             // 
             this.lblTLETransactionType.AutoSize = true;
             this.lblTLETransactionType.Location = new System.Drawing.Point(411, 390);
             this.lblTLETransactionType.Name = "lblTLETransactionType";
-            this.lblTLETransactionType.Size = new System.Drawing.Size(35, 13);
+            this.lblTLETransactionType.Size = new System.Drawing.Size(0, 13);
             this.lblTLETransactionType.TabIndex = 48;
-            this.lblTLETransactionType.Text = "label1";
             // 
             // lblTLE_CA_amount
             // 
             this.lblTLE_CA_amount.AutoSize = true;
             this.lblTLE_CA_amount.Location = new System.Drawing.Point(411, 411);
             this.lblTLE_CA_amount.Name = "lblTLE_CA_amount";
-            this.lblTLE_CA_amount.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_CA_amount.Size = new System.Drawing.Size(0, 13);
             this.lblTLE_CA_amount.TabIndex = 49;
-            this.lblTLE_CA_amount.Text = "label2";
             // 
             // lblTLE_CA_currency
             // 
             this.lblTLE_CA_currency.AutoSize = true;
             this.lblTLE_CA_currency.Location = new System.Drawing.Point(411, 431);
             this.lblTLE_CA_currency.Name = "lblTLE_CA_currency";
-            this.lblTLE_CA_currency.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_CA_currency.Size = new System.Drawing.Size(0, 13);
             this.lblTLE_CA_currency.TabIndex = 50;
-            this.lblTLE_CA_currency.Text = "label3";
             // 
             // lblTLE_Accounts
             // 
             this.lblTLE_Accounts.AutoSize = true;
             this.lblTLE_Accounts.Location = new System.Drawing.Point(411, 453);
             this.lblTLE_Accounts.Name = "lblTLE_Accounts";
-            this.lblTLE_Accounts.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_Accounts.Size = new System.Drawing.Size(0, 13);
             this.lblTLE_Accounts.TabIndex = 51;
-            this.lblTLE_Accounts.Text = "label4";
             // 
             // lblTLE_Status
             // 
             this.lblTLE_Status.AutoSize = true;
             this.lblTLE_Status.Location = new System.Drawing.Point(411, 473);
             this.lblTLE_Status.Name = "lblTLE_Status";
-            this.lblTLE_Status.Size = new System.Drawing.Size(35, 13);
+            this.lblTLE_Status.Size = new System.Drawing.Size(0, 13);
             this.lblTLE_Status.TabIndex = 52;
-            this.lblTLE_Status.Text = "label5";
             // 
             // txtTransactionAmount
             // 
-            this.txtTransactionAmount.Location = new System.Drawing.Point(49, 453);
+            this.txtTransactionAmount.Location = new System.Drawing.Point(132, 431);
             this.txtTransactionAmount.Name = "txtTransactionAmount";
             this.txtTransactionAmount.Size = new System.Drawing.Size(100, 20);
             this.txtTransactionAmount.TabIndex = 53;
@@ -495,7 +494,7 @@
             // 
             // txtTransactionCurrency
             // 
-            this.txtTransactionCurrency.Location = new System.Drawing.Point(49, 480);
+            this.txtTransactionCurrency.Location = new System.Drawing.Point(132, 457);
             this.txtTransactionCurrency.Name = "txtTransactionCurrency";
             this.txtTransactionCurrency.Size = new System.Drawing.Size(100, 20);
             this.txtTransactionCurrency.TabIndex = 54;
@@ -511,11 +510,31 @@
             this.btnChargeFee.UseVisualStyleBackColor = true;
             this.btnChargeFee.Click += new System.EventHandler(this.btnChargeFee_Click);
             // 
+            // lblSuma
+            // 
+            this.lblSuma.AutoSize = true;
+            this.lblSuma.Location = new System.Drawing.Point(91, 434);
+            this.lblSuma.Name = "lblSuma";
+            this.lblSuma.Size = new System.Drawing.Size(36, 13);
+            this.lblSuma.TabIndex = 56;
+            this.lblSuma.Text = "Сума:";
+            // 
+            // lblValuta
+            // 
+            this.lblValuta.AutoSize = true;
+            this.lblValuta.Location = new System.Drawing.Point(82, 460);
+            this.lblValuta.Name = "lblValuta";
+            this.lblValuta.Size = new System.Drawing.Size(45, 13);
+            this.lblValuta.TabIndex = 57;
+            this.lblValuta.Text = "Валута:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 554);
+            this.Controls.Add(this.lblValuta);
+            this.Controls.Add(this.lblSuma);
             this.Controls.Add(this.btnChargeFee);
             this.Controls.Add(this.txtTransactionCurrency);
             this.Controls.Add(this.txtTransactionAmount);
@@ -622,6 +641,8 @@
         private System.Windows.Forms.TextBox txtTransactionAmount;
         private System.Windows.Forms.TextBox txtTransactionCurrency;
         private System.Windows.Forms.Button btnChargeFee;
+        private System.Windows.Forms.Label lblSuma;
+        private System.Windows.Forms.Label lblValuta;
     }
 }
 

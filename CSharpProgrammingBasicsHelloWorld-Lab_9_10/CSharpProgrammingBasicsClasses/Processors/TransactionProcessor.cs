@@ -86,7 +86,7 @@ namespace CSharpProgrammingBasicsClasses
                         {
                             Console.WriteLine("Charged 15,00 MKD\n");
                             //Da se odzemat 15.00 MKD od smetkata
-                            TransactionStatus pom1 = AccountFrom.DebitAmount(new CurrencyAmount(Amount.amount-15,Amount.currency));
+                            TransactionStatus pom1 = AccountFrom.DebitAmount(new CurrencyAmount(15,Amount.currency));
                         }
                         //AccountFrom.Balance.amount -= Convert.ToDecimal(15);
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
