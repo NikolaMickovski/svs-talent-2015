@@ -14,19 +14,18 @@ namespace CSharpProgrammingBasicsClasses
     {
         private static TransactionProcessor tp;
 
-        //field _transactionLog;
         private IList<TransactionLogEntry> _transactionLog;
 
         public IList<TransactionLogEntry> TransactionLog
         {
-          get { return _transactionLog; }
-          set { _transactionLog = value; }
+            get { return _transactionLog; }
+            set { _transactionLog = value; }
         }
 
         /// <summary>
         /// Parametarless Constructor
         /// </summary>
-        private TransactionProcessor ()
+        private TransactionProcessor()
         {
             _transactionLog = new List<TransactionLogEntry>();
         }
@@ -40,8 +39,9 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="amount"></param>
         /// <param name="accounts"></param>
         /// <param name="transacionStatus"></param>
-        private TransactionLogEntry LogTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount account, TransactionStatus transacionStatus){
-            TransactionLogEntry tle = new TransactionLogEntry(transactionType,amount,account,transacionStatus);
+        private TransactionLogEntry LogTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount account, TransactionStatus transacionStatus)
+        {
+            TransactionLogEntry tle = new TransactionLogEntry(transactionType, amount, account, transacionStatus);
             return tle;
         }
 
@@ -56,23 +56,18 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public TransactionStatus ProcessTransaction(TransactionType TransactionType, CurrencyAmount Amount, IAccount AccountFrom, IAccount AccountTo)
         {
-          //  int charged_amount = 0;
-            
-            //throw new NotImplementedException();
             switch (TransactionType)
             {
                 case TransactionType.Transfer:
                     {
                         TransactionStatus dva = AccountFrom.DebitAmount(Amount);
                         TransactionStatus eden = AccountTo.CreditAmount(Amount);
-                        
+
                         if (eden == dva)
                         {
-                           TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
-                           return TransactionStatus.Completed;
-
+                            TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
+                            return TransactionStatus.Completed;
                         }
-
                         else
                         {
                             return TransactionStatus.Failed;
@@ -86,7 +81,7 @@ namespace CSharpProgrammingBasicsClasses
                         {
                             Console.WriteLine("Charged 15,00 MKD\n");
                             //Da se odzemat 15.00 MKD od smetkata
-                            TransactionStatus pom1 = AccountFrom.DebitAmount(new CurrencyAmount(15,Amount.currency));
+                            TransactionStatus pom1 = AccountFrom.DebitAmount(new CurrencyAmount(15, Amount.currency));
                         }
                         //AccountFrom.Balance.amount -= Convert.ToDecimal(15);
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
@@ -103,7 +98,6 @@ namespace CSharpProgrammingBasicsClasses
                     }
                 default: return TransactionStatus.None;
             }
-            
         }
 
         #region bool CheckAccounts
@@ -115,33 +109,33 @@ namespace CSharpProgrammingBasicsClasses
         /// <param name="Accountto">Smetka koj koja ke se izvrsi transakcijas</param>
         /// <returns></returns>
         /// 
-        
-        private bool CheckAccounts(TransactionType TransactionType,CurrencyAmount Amount, IAccount AccountFrom, IAccount Accountto)
-    {        
-            switch(TransactionType)
+
+        private bool CheckAccounts(TransactionType TransactionType, CurrencyAmount Amount, IAccount AccountFrom, IAccount Accountto)
+        {
+            switch (TransactionType)
             {
                 case TransactionType.Transfer:
-                {
-                     if(AccountFrom.Balance.amount < Amount.amount) 
-                     {
-                         return false;
-                     }
-                     else return true;
-                }
-                case TransactionType.Debit:
-                {
-                    if(AccountFrom.Balance.amount < Amount.amount)
                     {
-                        return false;
+                        if (AccountFrom.Balance.amount < Amount.amount)
+                        {
+                            return false;
+                        }
+                        else return true;
                     }
-                    else return true;
-                }
-                default :
-                {
-                    return true;
-                }
+                case TransactionType.Debit:
+                    {
+                        if (AccountFrom.Balance.amount < Amount.amount)
+                        {
+                            return false;
+                        }
+                        else return true;
+                    }
+                default:
+                    {
+                        return true;
+                    }
             }
-    }
+        }
         #endregion
 
         /// <summary>
@@ -155,29 +149,29 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public TransactionStatus ProcessGroupTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts)
         {
-            
+
             if ((transactionType != TransactionType.Debit) && (transactionType != TransactionType.Credit))
             {
-                return TransactionStatus.Failed;  
+                return TransactionStatus.Failed;
             }
             else
             {
                 for (int i = 0; i < accounts.Length; i++)
                 {
-                    if (accounts[i].Equals(null)) 
+                    if (accounts[i].Equals(null))
                     {
                         continue;
                     }
                     else
                     {
                         TransactionStatus tmp = ProcessTransaction(transactionType, amount, accounts[i], null);
-                    } 
+                    }
                 }
                 return TransactionStatus.Completed;
             }
         }
 
-            
+
         /// <summary>
         /// Implementiranje na Property-to TransactionCount
         /// </summary>
@@ -194,6 +188,7 @@ namespace CSharpProgrammingBasicsClasses
                 throw new NotImplementedException();
             }
         }
+
         /// <summary>
         /// Implementiranje na Property-to TransactionLogEntry
         /// </summary>
@@ -211,12 +206,9 @@ namespace CSharpProgrammingBasicsClasses
                 {
                     return this.TransactionLog[key];
                 }
-                    
-
-
-               // throw new NotImplementedException(); 
-                }
+            }
         }
+
         /// <summary>
         /// Implementiranje na Property-to LastTransaction
         /// </summary>   
@@ -234,34 +226,24 @@ namespace CSharpProgrammingBasicsClasses
             }
         }
 
-        static TransactionProcessor(){
+        static TransactionProcessor()
+        {
             tp = new TransactionProcessor();
             tp.ExternalLogger += AccountHelper.NotifyNationalBank;
             tp.ExternalLogger += AccountHelper.LogTransaction;
         }
         public static TransactionProcessor GetTransactionProcessor()
         {
-           // ITransactionProcessor tp = new TransactionProcessor();
+            // ITransactionProcessor tp = new TransactionProcessor();
             return (TransactionProcessor)tp;
         }
 
-        private void CallExternalLogger (IAccount account, TransactionType transactionType, CurrencyAmount amount)
+        private void CallExternalLogger(IAccount account, TransactionType transactionType, CurrencyAmount amount)
         {
             ExternalLogger(account, transactionType, amount);
         }
 
-        public TransactionLogger ExternalLogger {get; set; }
-       /* {
-            get
-            {
-
-             //   throw new NotImplementedException();
-            }
-            set
-            {
-             //   throw new NotImplementedException();
-            }
-        }*/
+        public TransactionLogger ExternalLogger { get; set; }       
 
 
         //public TransactionStatus ChargeProcessingFee(CurrencyAmount amount, IAccount[] accounts)
