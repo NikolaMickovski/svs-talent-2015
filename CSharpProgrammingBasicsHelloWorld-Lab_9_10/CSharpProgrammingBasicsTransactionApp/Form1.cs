@@ -276,15 +276,22 @@ namespace CSharpProgrammingBasicsTransactionApp
                 IAccount[] niza_smetki;
                 niza_smetki = new IAccount[2];
 
+                //Kreirame ITansactionAccount
+                ITransactionAccount ta = CreateTransactionAccount();
+                ta.OnBalanceChanged+=OnBalanceChanged_Handler;
+                niza_smetki[0] = ta;
+
+
                 //Kreirame IDepositAccount
                 IDepositAccount da = CreateDebitAccount();
                 da.OnBalanceChanged += OnBalanceChanged_Handler;
 
-                niza_smetki[0] = da;
-                ILoanAccount la = CreateLoanAccount();
-                la.OnBalanceChanged += OnBalanceChanged_Handler;
+                niza_smetki[1] = da;
 
-                niza_smetki[1] = la;
+                //ILoanAccount la = CreateLoanAccount();
+                //la.OnBalanceChanged += OnBalanceChanged_Handler;
+
+                //niza_smetki[1] = la;
 
                 ITransactionProcessor tp = TransactionProcessor.GetTransactionProcessor();
                 try
@@ -305,7 +312,7 @@ namespace CSharpProgrammingBasicsTransactionApp
 
                 if (!err)
                 {
-                    PopulateAccounts(da, la);DisplayLastTransactionDetailsWithKey(tp);
+                    PopulateAccounts(da, ta);DisplayLastTransactionDetailsWithKey(tp);
                     CreateAccounts(CreateAccountType.DepositAccount | CreateAccountType.LoanAccount, null);
                 }
             }
