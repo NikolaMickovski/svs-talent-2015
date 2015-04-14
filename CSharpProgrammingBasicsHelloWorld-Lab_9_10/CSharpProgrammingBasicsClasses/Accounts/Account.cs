@@ -31,22 +31,27 @@ namespace CSharpProgrammingBasicsClasses
         {
             get
             {
-                return _balance;                               
-            }            
+                return _balance;
+            }
             private set
             {
                 decimal _old_value = 0;
-                if(!(_balance.amount == 0 && _balance.currency == null))
+                //Koga se kreira za prv pat objekt od izvedena klasa od Account
+                //default-nite vrednosti za decimal i string se 0 i null
+                //znaci, dokolku _balance.amount i _balance.string se 0 i null, soodvetno,
+                //togas ne treba da se povika OnBalanceChanged, tuku treba da se postavi
+                //vrednost "za prv pat"
+                if (!(_balance.amount == 0 && _balance.currency == null))
                 {
                     _old_value = _balance.amount;
                     if (_balance.amount != value.amount)
                     {
                         BalanceChangedEventArguments b = new BalanceChangedEventArguments((IAccount)this, value);
-                        
-                        OnBalanceChanged(this, b);}
+                        OnBalanceChanged(this, b);
+                    }
                 }
                 _balance = value;
-            }            
+            }
         }//End Property
 
         #endregion
@@ -66,7 +71,7 @@ namespace CSharpProgrammingBasicsClasses
             this.Number = number;
             this.Currency = currency;
             CurrencyAmount _balance = this.Balance;
-            _balance.amount = rm.Next(80000,100000);
+            _balance.amount = rm.Next(80000, 100000);
             _balance.currency = "MKD";
             this.Balance = _balance;
         }
@@ -75,17 +80,23 @@ namespace CSharpProgrammingBasicsClasses
         /// Overloaded Constructor with one parametar only
         /// </summary>
         /// <param name="Currency"></param>
-        public Account(string currency) : this(Convert.ToInt64(AccountHelper.GenerateAccountID()), "n/a", currency) 
+        public Account(string currency)
+            : this(Convert.ToInt64(AccountHelper.GenerateAccountID()), "n/a", currency)
         {
-            this.Number = GenerateAccountNumber(); 
+            //Klasata Account e apstraktna klasa, pa spored toa od nea ne mozeme da
+            //instancirame objekt.
+            //Zatoa vo ovoj konstruktor, na mestoto na "n/a", ne moze da stanivme
+            //objekt_od_Account.GenerateAccountNumber()
+            //Prvicno postavuvame nekoj dummy ACC_Number, a potoa preku set metodot
+            //go postavuvame vistinskiot ACC_Number
+            this.Number = GenerateAccountNumber();
         }
-
 
 
         //Default Constructor
         public Account()
         {
-           
+
         }
 
         #region PUBLIC METHODS
@@ -96,7 +107,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public virtual TransactionStatus DebitAmount(CurrencyAmount amount)
         {
-            
+
 
             //dokolku vleznata VALUTA e ista so valutata na smetkata, vrati COMPLETED
             if (CompareCurrency(amount))
@@ -110,7 +121,7 @@ namespace CSharpProgrammingBasicsClasses
             else
             {
                 throw new CurrencyMismatchException("Originalna valuta: " + this._balance.currency +
-                ", a vlezna valuta: " + amount.currency);                
+                ", a vlezna valuta: " + amount.currency);
             }
         }
         /// <summary>
@@ -120,7 +131,7 @@ namespace CSharpProgrammingBasicsClasses
         /// <returns></returns>
         public virtual TransactionStatus CreditAmount(CurrencyAmount amount)
         {
-           
+
             //dokolku vleznata VALUTA e ista so valutata na smetkata, vrati COMPLETED
             if (CompareCurrency(amount))
             {
@@ -134,7 +145,7 @@ namespace CSharpProgrammingBasicsClasses
             else
             {
                 throw new CurrencyMismatchException("Originalna valuta: " + this._balance.currency +
-                ", a vlezna valuta: " + amount.currency);                
+                ", a vlezna valuta: " + amount.currency);
             }
 
         }
@@ -158,7 +169,7 @@ namespace CSharpProgrammingBasicsClasses
         /// </summary>
         /// <returns></returns>
         protected abstract string GenerateAccountNumber();
-        
+
         #endregion
 
         /// <summary>
@@ -167,6 +178,6 @@ namespace CSharpProgrammingBasicsClasses
         public event EventHandler<BalanceChangedEventArguments> OnBalanceChanged;
 
 
-              
+
     }
 }

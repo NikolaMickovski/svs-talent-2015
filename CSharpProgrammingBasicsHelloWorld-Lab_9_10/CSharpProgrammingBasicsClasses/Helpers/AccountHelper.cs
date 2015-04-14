@@ -40,7 +40,12 @@ namespace CSharpProgrammingBasicsClasses
             return "n/a";
         }
 
-
+        /// <summary>
+        /// Genericko metod
+        /// </summary>
+        /// <typeparam name="TypeOfAccount"></typeparam>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
         public static string GenerateAccountNumber <TypeOfAccount> (long accountID) where TypeOfAccount : IAccount, new ()
         {
             TypeOfAccount T = new TypeOfAccount();

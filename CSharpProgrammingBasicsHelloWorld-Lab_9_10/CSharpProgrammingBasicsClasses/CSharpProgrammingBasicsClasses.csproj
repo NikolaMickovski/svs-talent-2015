@@ -46,6 +46,7 @@
     <Compile Include="Common\CurrencyMismatchException.cs" />
     <Compile Include="Common\Delegates.cs" />
     <Compile Include="Common\ExceptionLogger.cs" />
+    <Compile Include="Common\LimitReached.cs" />
     <Compile Include="Common\TransactionLimitExceeded.cs" />
     <Compile Include="Extensions\ProcessorExtensions.cs" />
     <Compile Include="Helpers\AccountHelper.cs" />

@@ -235,14 +235,21 @@ namespace CSharpProgrammingBasicsTransactionApp
                 (DateTime)dtpEndDate.Value,
                 new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
             }
-            if (c_t.GetType() == typeof(LoanAccount))
+            else
             {
-                return new LoanAccount(txtCurrency.Text,
-                new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
-                new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
-                (DateTime)dtpStartDate.Value,
-                (DateTime)dtpEndDate.Value,
-                new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
+                if (c_t.GetType() == typeof(LoanAccount))
+                {
+                    return new LoanAccount(txtCurrency.Text,
+                    new TimePeriod(Convert.ToInt32(txtAmountPeriod.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimePeriod.Text)),
+                    new InterestRate(Convert.ToDecimal(txtAmountInterestRate.Text), (UnitOfTime)Enum.Parse(typeof(UnitOfTime), txtUnitOfTimeInterestRate.Text)),
+                    (DateTime)dtpStartDate.Value,
+                    (DateTime)dtpEndDate.Value,
+                    new TransactionAccount(txtCurrency.Text, Convert.ToDecimal(txtLimit.Text)));
+                }
+                else
+                {
+                    c_t = default(Class_Type);
+                }
             }
             return c_t;
         }
@@ -303,6 +310,10 @@ namespace CSharpProgrammingBasicsTransactionApp
                     if (ex.GetType() == typeof(CurrencyMismatchException))
                     {
                         throw;
+                    }
+                    if (ex.GetType() == typeof(LimitReached))
+                    {
+                        Console.WriteLine(((LimitReached)ex).ErrorCode + "\n");
                     }
                     Console.WriteLine(ex.Message + "\n");
                     txtTransactionAmount.Text = "10";

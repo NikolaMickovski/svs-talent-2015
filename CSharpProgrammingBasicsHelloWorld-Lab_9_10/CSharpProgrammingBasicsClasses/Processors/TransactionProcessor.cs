@@ -77,13 +77,22 @@ namespace CSharpProgrammingBasicsClasses
                     {
                         //Prvo treba da izvrsime DEBIT, ako ne frli greska, treba da se logira transakcijata
                         TransactionStatus pom = AccountFrom.DebitAmount(Amount);
+                        
+                        //Tuka ke proverime dali Debit Transakcijata izvrsila namaluvanje
+                        //na saldoto na smetkata, a pritoa saldoto doslo do 0 ili pod 0
+                        //vo toj slucaj, treba da se "frli" Limit Reached Exception
+                        if (AccountFrom.Balance.amount <= 0)
+                        {
+                            throw new LimitReached("LimitReached\n");
+                        }
+
+
                         if (AccountFrom.GetType() == typeof(LoanAccount) || AccountFrom.GetType() == typeof(DepositAccount))
                         {
                             Console.WriteLine("Charged 15,00 MKD\n");
                             //Da se odzemat 15.00 MKD od smetkata
                             TransactionStatus pom1 = AccountFrom.DebitAmount(new CurrencyAmount(15, Amount.currency));
                         }
-                        //AccountFrom.Balance.amount -= Convert.ToDecimal(15);
                         TransactionLog.Add(LogTransaction(TransactionType, Amount, AccountFrom, TransactionStatus.Completed));
                         CallExternalLogger(AccountFrom, TransactionType, Amount);
                         return pom;
