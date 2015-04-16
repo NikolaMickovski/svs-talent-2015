@@ -1,0 +1,5 @@
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_OCP\ExampleOCP\ExampleOCP\obj\Debug\ExampleOCP.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_OCP\ExampleOCP\ExampleOCP\bin\Debug\ExampleOCP.dll
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_OCP\ExampleOCP\ExampleOCP\bin\Debug\ExampleOCP.pdb
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_OCP\ExampleOCP\ExampleOCP\obj\Debug\ExampleOCP.dll
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_OCP\ExampleOCP\ExampleOCP\obj\Debug\ExampleOCP.pdb
