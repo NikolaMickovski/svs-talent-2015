@@ -42,6 +42,12 @@
     <Compile Include="TheBad\AcmeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TheBad\IFactory.cs" />
+    <Compile Include="TheBest\IBikeFactory.cs" />
+    <Compile Include="TheBest\ICarFactory.cs" />
+    <Compile Include="TheBest\IFactory.cs" />
+    <Compile Include="TheBest\IMotorBikeFactory.cs" />
+    <Compile Include="TheBest\ProduceAllFactory.cs" />
+    <Compile Include="TheBest\ProduceCarFactory.cs" />
     <Compile Include="TheGood\IBikeFactory.cs" />
     <Compile Include="TheGood\IMotorBikeFactory.cs" />
     <Compile Include="TheGood\IFactory.cs" />
