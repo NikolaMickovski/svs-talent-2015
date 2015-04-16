@@ -1,0 +1,6 @@
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_LSP\ExampleLSP\ExampleLSP\bin\Debug\ExampleLSP.exe.config
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_LSP\ExampleLSP\ExampleLSP\obj\Debug\ExampleLSP.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_LSP\ExampleLSP\ExampleLSP\bin\Debug\ExampleLSP.exe
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_LSP\ExampleLSP\ExampleLSP\bin\Debug\ExampleLSP.pdb
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_LSP\ExampleLSP\ExampleLSP\obj\Debug\ExampleLSP.exe
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_LSP\ExampleLSP\ExampleLSP\obj\Debug\ExampleLSP.pdb
