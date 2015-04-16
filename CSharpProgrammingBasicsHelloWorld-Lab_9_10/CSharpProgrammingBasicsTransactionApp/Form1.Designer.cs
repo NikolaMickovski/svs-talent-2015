@@ -78,6 +78,8 @@
             this.btnChargeFee = new System.Windows.Forms.Button();
             this.lblSuma = new System.Windows.Forms.Label();
             this.lblValuta = new System.Windows.Forms.Label();
+            this.gbDebitAccount = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -102,7 +104,7 @@
             // 
             // txtCurrency
             // 
-            this.txtCurrency.Location = new System.Drawing.Point(132, 42);
+            this.txtCurrency.Location = new System.Drawing.Point(132, 36);
             this.txtCurrency.Name = "txtCurrency";
             this.txtCurrency.Size = new System.Drawing.Size(100, 20);
             this.txtCurrency.TabIndex = 2;
@@ -110,7 +112,7 @@
             // 
             // txtLimit
             // 
-            this.txtLimit.Location = new System.Drawing.Point(132, 68);
+            this.txtLimit.Location = new System.Drawing.Point(132, 62);
             this.txtLimit.Name = "txtLimit";
             this.txtLimit.Size = new System.Drawing.Size(100, 20);
             this.txtLimit.TabIndex = 3;
@@ -119,7 +121,7 @@
             // lblAccountCurrency
             // 
             this.lblAccountCurrency.AutoSize = true;
-            this.lblAccountCurrency.Location = new System.Drawing.Point(34, 45);
+            this.lblAccountCurrency.Location = new System.Drawing.Point(34, 39);
             this.lblAccountCurrency.Name = "lblAccountCurrency";
             this.lblAccountCurrency.Size = new System.Drawing.Size(42, 13);
             this.lblAccountCurrency.TabIndex = 4;
@@ -128,7 +130,7 @@
             // lblAccountLimit
             // 
             this.lblAccountLimit.AutoSize = true;
-            this.lblAccountLimit.Location = new System.Drawing.Point(34, 72);
+            this.lblAccountLimit.Location = new System.Drawing.Point(34, 66);
             this.lblAccountLimit.Name = "lblAccountLimit";
             this.lblAccountLimit.Size = new System.Drawing.Size(95, 13);
             this.lblAccountLimit.TabIndex = 5;
@@ -136,14 +138,14 @@
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(132, 99);
+            this.dtpStartDate.Location = new System.Drawing.Point(132, 117);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(200, 20);
             this.dtpStartDate.TabIndex = 6;
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(132, 128);
+            this.dtpEndDate.Location = new System.Drawing.Point(132, 146);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(200, 20);
             this.dtpEndDate.TabIndex = 7;
@@ -151,7 +153,7 @@
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(34, 101);
+            this.lblStartDate.Location = new System.Drawing.Point(34, 119);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(82, 13);
             this.lblStartDate.TabIndex = 8;
@@ -160,7 +162,7 @@
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(34, 131);
+            this.lblEndDate.Location = new System.Drawing.Point(34, 149);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(71, 13);
             this.lblEndDate.TabIndex = 9;
@@ -168,7 +170,7 @@
             // 
             // txtAmountPeriod
             // 
-            this.txtAmountPeriod.Location = new System.Drawing.Point(132, 155);
+            this.txtAmountPeriod.Location = new System.Drawing.Point(132, 173);
             this.txtAmountPeriod.Name = "txtAmountPeriod";
             this.txtAmountPeriod.Size = new System.Drawing.Size(100, 20);
             this.txtAmountPeriod.TabIndex = 10;
@@ -176,7 +178,7 @@
             // 
             // txtUnitOfTimePeriod
             // 
-            this.txtUnitOfTimePeriod.Location = new System.Drawing.Point(255, 154);
+            this.txtUnitOfTimePeriod.Location = new System.Drawing.Point(255, 172);
             this.txtUnitOfTimePeriod.Name = "txtUnitOfTimePeriod";
             this.txtUnitOfTimePeriod.Size = new System.Drawing.Size(100, 20);
             this.txtUnitOfTimePeriod.TabIndex = 11;
@@ -184,7 +186,7 @@
             // 
             // txtAmountInterestRate
             // 
-            this.txtAmountInterestRate.Location = new System.Drawing.Point(132, 182);
+            this.txtAmountInterestRate.Location = new System.Drawing.Point(132, 200);
             this.txtAmountInterestRate.Name = "txtAmountInterestRate";
             this.txtAmountInterestRate.Size = new System.Drawing.Size(100, 20);
             this.txtAmountInterestRate.TabIndex = 12;
@@ -192,7 +194,7 @@
             // 
             // txtUnitOfTimeInterestRate
             // 
-            this.txtUnitOfTimeInterestRate.Location = new System.Drawing.Point(255, 182);
+            this.txtUnitOfTimeInterestRate.Location = new System.Drawing.Point(255, 200);
             this.txtUnitOfTimeInterestRate.Name = "txtUnitOfTimeInterestRate";
             this.txtUnitOfTimeInterestRate.Size = new System.Drawing.Size(100, 20);
             this.txtUnitOfTimeInterestRate.TabIndex = 13;
@@ -201,7 +203,7 @@
             // lblPeriod
             // 
             this.lblPeriod.AutoSize = true;
-            this.lblPeriod.Location = new System.Drawing.Point(34, 161);
+            this.lblPeriod.Location = new System.Drawing.Point(34, 179);
             this.lblPeriod.Name = "lblPeriod";
             this.lblPeriod.Size = new System.Drawing.Size(45, 13);
             this.lblPeriod.TabIndex = 14;
@@ -210,7 +212,7 @@
             // lblInterestRate
             // 
             this.lblInterestRate.AutoSize = true;
-            this.lblInterestRate.Location = new System.Drawing.Point(34, 182);
+            this.lblInterestRate.Location = new System.Drawing.Point(34, 200);
             this.lblInterestRate.Name = "lblInterestRate";
             this.lblInterestRate.Size = new System.Drawing.Size(89, 13);
             this.lblInterestRate.TabIndex = 15;
@@ -528,6 +530,24 @@
             this.lblValuta.TabIndex = 57;
             this.lblValuta.Text = "Валута:";
             // 
+            // gbDebitAccount
+            // 
+            this.gbDebitAccount.Location = new System.Drawing.Point(12, 95);
+            this.gbDebitAccount.Name = "gbDebitAccount";
+            this.gbDebitAccount.Size = new System.Drawing.Size(365, 134);
+            this.gbDebitAccount.TabIndex = 58;
+            this.gbDebitAccount.TabStop = false;
+            this.gbDebitAccount.Text = "Debit Account";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(12, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(365, 74);
+            this.groupBox1.TabIndex = 59;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Transaction Account";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +603,8 @@
             this.Controls.Add(this.txtCurrency);
             this.Controls.Add(this.btnCreateDepositAccount);
             this.Controls.Add(this.btnCreateTransactionAccount);
+            this.Controls.Add(this.gbDebitAccount);
+            this.Controls.Add(this.groupBox1);
             this.Name = "frmMain";
             this.Text = "Account Details Form";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -643,6 +665,8 @@
         private System.Windows.Forms.Button btnChargeFee;
         private System.Windows.Forms.Label lblSuma;
         private System.Windows.Forms.Label lblValuta;
+        private System.Windows.Forms.GroupBox gbDebitAccount;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
