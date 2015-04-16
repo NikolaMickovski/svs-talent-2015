@@ -11,6 +11,9 @@ namespace ExampleIsp.TheGood
     /// </summary>
     public interface ICarFactory : IFactory
     {
+        /// <summary>
+        /// A CAR PRODUCING FACTORY        
+        /// </summary>
         int ProduceBody();
 
         int ProduceEngine();

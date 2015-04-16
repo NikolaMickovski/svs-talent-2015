@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ExampleIsp.TheGood
 {
+    /// <summary>
+    /// A MOTORBIKE PRODUCING FACTORY
+    /// - bidejki ova e fabrika za motori, iminjata na metodite
+    /// ne mora da imaat i Moto vo niv - toa e sredeno vo The Best
+    /// </summary>
    public interface IMotorBikeFactory : IFactory
     {
         /// <summary>

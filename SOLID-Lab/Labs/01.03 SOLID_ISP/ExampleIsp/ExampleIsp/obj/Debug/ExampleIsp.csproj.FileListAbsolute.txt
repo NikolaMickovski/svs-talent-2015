@@ -8,3 +8,8 @@ C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C#
 C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C# Basics\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\bin\Debug\ExampleIsp.pdb
 C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C# Basics\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\obj\Debug\ExampleIsp.dll
 C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C# Basics\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\obj\Debug\ExampleIsp.pdb
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\bin\Debug\ExampleIsp.dll
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\bin\Debug\ExampleIsp.pdb
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\obj\Debug\ExampleIsp.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\obj\Debug\ExampleIsp.dll
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_ISP\ExampleIsp\ExampleIsp\obj\Debug\ExampleIsp.pdb

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ExampleIsp.TheGood
 {
+    /// <summary>
+    /// MASTER FACTORY INTERFACE
+    /// </summary>
     public interface IFactory
     {
         int StartShift();
