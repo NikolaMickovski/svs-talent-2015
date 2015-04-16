@@ -8,7 +8,7 @@ namespace ExampleOCP.TheGood
 {
     public class Dog10_20kg : Dog
     {
-        public override void Dewarm()
+        public override void Deworm()
         {
             //use CANIDON_type3 (15mg)
         }

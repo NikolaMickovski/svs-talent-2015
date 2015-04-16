@@ -8,7 +8,7 @@ namespace ExampleOCP.TheGood
 {
     public abstract class Dog
     {
-        public virtual void Dewarm(){}
+        public virtual void Deworm(){}
         public virtual void FleaTickControl(){}
     }
 }
