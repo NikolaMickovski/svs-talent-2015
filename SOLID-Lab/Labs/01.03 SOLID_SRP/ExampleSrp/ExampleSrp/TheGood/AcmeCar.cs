@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ExampleSrp.TheGood
 {
+    /// <summary>
+    /// The GOOD - use static classes
+    /// EVEN BETTER - implement Singletn in the static classes
+    /// </summary>
     public class AcmeCar
     {
         public LockState IsLocked { get; private set; }

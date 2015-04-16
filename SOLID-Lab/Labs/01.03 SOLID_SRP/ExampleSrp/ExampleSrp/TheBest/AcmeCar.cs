@@ -6,38 +6,52 @@ using System.Threading.Tasks;
 
 namespace ExampleSrp.TheBest
 {
-
-
-
+   
     public class AcmeCar
     {
         public LockState IsLocked { get; private set; }
         public bool sold { get; private set; }
         ILog logger_Cloud { get; set; }
         ILog logger_PC { get; set; }
-        public string IP_PC {get; set;}
+        
 
+        /// <summary>
+        /// Public Constructor
+        /// </summary>
+        /// <param name="logger_Cloud">Logger for Cloud</param>
+        /// <param name="Logger_PC">Logger containing the IP address of the PC to log on</param>
         public AcmeCar(ILog logger_Cloud, ILog Logger_PC )
         {
-            if (logger_PC.GetType() == typeof(IPCLog)) this.logger_PC = (IPCLog)logger;
-            if (logger_PC.GetType() == typeof(ICloudPC)) this.logger = (ICloudLog)logger;
+            if (!logger_Cloud.Equals(null) && logger_Cloud.GetType() == typeof(ICloudLog))
+            {
+                this.logger_PC = (IPCLog)logger_Cloud;
+            }
+
+            if (!logger_PC.Equals(null) && logger_PC.GetType() == typeof(IPCLog))
+            {
+                this.logger_PC = (ICloudLog)Logger_PC;
+            }
             sold = true;
-            IP_PC = pc;
+            
         }
         #region LOCK METHOD
-
-
 
         public void Lock()
         {
             try
             {
                 this.IsLocked = LockState.Locked;
-                logger.Log("On state changed: Locked");
+                // Koristi metoda od IPCLog
+                ((IPCLog)logger_PC).ComputerLogChangeState("On state changed: Locked");
+                //Koristi metoda od ILog
+                logger_PC.Log("/");
             }
             catch(Exception e)
             {
-                logger.Log("Greska pri zaklucuvanje "+e.Message);
+                //Koristi metoda od ICloudLog
+                ((ICloudLog)logger_Cloud).Inform_Error("Greska pri zaklucuvanje "+e.Message);
+                //koristi metoda od ILog
+                logger_Cloud.Log("/");
             }
         }
         #endregion
@@ -48,11 +62,17 @@ namespace ExampleSrp.TheBest
             try
             {
                 this.IsLocked = LockState.Unlocked;
-                logger.Log("On state changed: Unlocked");
+                // Koristi metoda od IPCLog
+                ((IPCLog)logger_PC).ComputerLogChangeState("On state changed: Unlocked");
+                //Koristi metoda od ILog
+                logger_PC.Log("/");
             }
             catch (Exception e)
             {
-                logger.Log("Greska pri otklucuvanje "+e.Message);
+                //Koristi metoda od ICloudLog
+                ((ICloudLog)logger_Cloud).Inform_Error("Greska pri otklucuvanje " + e.Message);
+                //koristi metoda od ILog
+                logger_Cloud.Log("/");
             }
         }
         #endregion

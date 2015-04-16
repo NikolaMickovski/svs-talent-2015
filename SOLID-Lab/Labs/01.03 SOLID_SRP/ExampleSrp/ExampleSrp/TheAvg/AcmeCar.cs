@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ExampleSrp.TheAvg
 {
+    /// <summary>
+    /// THE AVERAGE - use Inheritance
+    /// </summary>
     public class AcmeCar
     {
         public LockState IsLocked { get; private set; }

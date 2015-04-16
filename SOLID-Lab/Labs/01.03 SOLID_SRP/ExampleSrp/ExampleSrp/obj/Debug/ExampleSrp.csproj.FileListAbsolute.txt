@@ -3,3 +3,8 @@ C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C#
 C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C# Basics\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\obj\Debug\ExampleSrp.csprojResolveAssemblyReference.cache
 C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C# Basics\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\obj\Debug\ExampleSrp.dll
 C:\Users\student\Desktop\svs-talent-2015-master (1)\svs-talent-2015-master\00-C# Basics\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\obj\Debug\ExampleSrp.pdb
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\bin\Debug\ExampleSrp.dll
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\bin\Debug\ExampleSrp.pdb
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\obj\Debug\ExampleSrp.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\obj\Debug\ExampleSrp.dll
+D:\Documents\GitHub\svs-talent-2015\SOLID-Lab\Labs\01.03 SOLID_SRP\ExampleSrp\ExampleSrp\obj\Debug\ExampleSrp.pdb
